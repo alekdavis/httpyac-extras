@@ -1,0 +1,430 @@
+{
+  "Any HTTP request": {
+    "scope": "http,rest",
+    "prefix": ["###"],
+    "description": "Test region for any type of HTTP request.",
+    "body": [
+      "### ${1:Test title}",
+      "${2:/*\n${3:Optional test description.}\n*/}",
+      "# @name ${4:testResponseName}",
+      "${5:# @ref ${6:referencedTestResponseName}}",
+      "${7: {{\n\t// Skip this test if expected condition from referenced test response is not met.\n\texports.\\$cancel = !$6.${8:expectedCondition};\n\\}\\}}",
+      "${9|GET,POST,PATCH,PUT,DELETE|} /${10:endpoint}",
+      "${11:\t?query=a\n\t&b=c}",
+      "Authorization: ${12|oauth2,Bearer,openid,Basic|} ${13|client_credentials,authorization_code,{{bearerToken}},{{user}},implicit,password,device_code|} ${14|clientCredentials,credentialsVariablePrefix,{{password}}|}",
+      "${15:Content-Type: ${16|application/json,application/merge-patch+json,application/json-patch+json,application/x-www-form-urlencoded|}}",
+      "${17|{\"a\":\"b\"},[{\"a\":\"b\"}\\,{\"c\":\"d\"}]|}",
+      "",
+      "?? status == ${18|200,201,202,204,400,401,404,409|}",
+      "?? status startsWith ${19|20,40|}",
+      "${0}"
+    ]
+  },
+  "HTTP GET (ITEM) request": {
+    "scope": "http,rest",
+    "prefix": ["###"],
+    "description": "Test region for an HTTP GET request returning a single item.",
+    "body": [
+      "### ${1:Get ${2:sample}}",
+      "# @name ${3:$2Json}",
+      "${4:# @ref ${5:referencedTest}}",
+      "GET /${6:endpoint}/{{${7:id}}}",
+      "Authorization: oauth2 client_credentials clientCredentials",
+      "",
+      "?? status == 200",
+      "?? js $3 contains ${8:propertyName}",
+      "?? js $3.$9 ${10|exists,isTrue,isFalse,isBoolean,isString,isNumber,sArray,matches ^regex$,== value,!= value,> value,>= value,< value,<= value,startsWith value,endWith value,includes value,contains value|}",
+      "${0}"
+    ]
+  },
+  "HTTP GET (ARRAY) request": {
+    "scope": "http,rest",
+    "prefix": ["###"],
+    "description": "Test region for an HTTP GET request returning an array.",
+    "body": [
+      "### ${1:Get ${2:samples}}",
+      "# @name ${3:$2Json}",
+      "${4:# @ref ${5:referencedTest}}",
+      "GET /${6:endpoint}",
+      "${7:\t?query=a\n\t&b=c}",
+      "Authorization: oauth2 client_credentials clientCredentials",
+      "",
+      "?? status == 200",
+      "?? js $3 isArray",
+      "?? js $3.length > 0",
+      "${0}"
+    ]
+  },
+  "HTTP POST request": {
+    "scope": "http,rest",
+    "prefix": ["###"],
+    "description": "Test region for an HTTP POST request.",
+    "body": [
+      "### ${1:Create ${2:sample}}",
+      "# @name ${3:$2Json}",
+      "${4:# @ref ${5:referencedTest}}",
+      "POST /${6:endpoint}",
+      "Authorization: oauth2 client_credentials clientCredentials",
+      "Content-Type: application/json",
+      "{",
+      "${7:\t\"a\":\"b\",\n\t\"c\":\"d\"}",
+      "}",
+      "",
+      "?? status == 201",
+      "?? header Location exists",
+      "?? header Location endsWith {{${8:id}}}",
+      "?? body id exists",
+      "?? body id isString",
+      "${0}"
+    ]
+  },
+  "HTTP PUT request": {
+    "scope": "http,rest",
+    "prefix": ["###"],
+    "description": "Test region for an HTTP PUT request.",
+    "body": [
+      "### ${1:Replace ${2:sample}}}",
+      "# @name ${3:$2Json}",
+      "${4:# @ref ${5:referencedTest}}",
+      "PUT /${6:endpoint}/{{${7:id}}}",
+      "Authorization: oauth2 client_credentials clientCredentials",
+      "Content-Type: application/json",
+      "{",
+      "${8:\t\"a\":\"b\",\n\t\"c\":\"d\"}",
+      "}",
+      "",
+      "?? status == ${9|200,204|}",
+      "?? body ${10:responseBodyPropertyName} ${11|exists,isTrue,isFalse,isBoolean,isString,isNumber,sArray,matches ^regex$,== value,!= value,> value,>= value,< value,<= value,startsWith value,endWith value,includes value,contains value|}",
+      "${0}"
+    ]
+  },
+  "HTTP PATCH request (JSON-PATCH+JSON)": {
+    "scope": "http,rest",
+    "prefix": ["###"],
+    "description": "Test region for an RFC 7396-compliant REST PATCH request with a body holding a single item and application/merge-patch+json content type.",
+    "body": [
+      "### ${1:Update ${2:sample}}}",
+      "# @name ${3:$2Json}",
+      "${4:# @ref ${5:referencedTest}}",
+      "PATCH /${6:endpoint}/{{${7:id}}}",
+      "Authorization: oauth2 client_credentials clientCredentials",
+      "Content-Type: application/merge-patch+json",
+      "{",
+      "\t\"a\":\"b\",",
+      "\t\"c\":\"d\"",
+      "}",
+      "",
+      "?? status == ${8|200,204|}",
+      "?? body ${9:responseBodyPropertyName} ${10|exists,isTrue,isFalse,isBoolean,isString,isNumber,sArray,matches ^regex$,== value,!= value,> value,>= value,< value,<= value,startsWith value,endWith value,includes value,contains value|}",
+      "${0}"
+    ]
+  },
+  "HTTP PATCH request (MERGE-PATCH+JSON)": {
+    "scope": "http,rest",
+    "prefix": ["###"],
+    "description": "Test region for an RFC 6902-compliant REST PATCH request with a body holding an array of patch operations and application/json-patch+json content type.",
+    "body": [
+      "### ${1:Update ${2:sample}}}",
+      "# @name ${3:$2Json}",
+      "${4:# @ref ${5:referencedTest}}",
+      "PATCH /${6:endpoint}/{{${7:id}}}",
+      "Authorization: oauth2 client_credentials clientCredentials",
+      "Content-Type: application/json-patch+json",
+      "[",
+      "\t{\"op\":\"add\",\"path\":\"/someValue\",\"value\":\"{{newValue}}\"},",
+      "\t{\"op\":\"replace\",\"path\":\"/someOtherValue\",\"value\":\"{{updatedValue}}\"},",
+      "\t{\"op\":\"remove\",\"path\":\"/yetAnotherValue\"}",
+      "]",
+      "",
+      "?? status == ${8|200,204|}",
+      "?? body ${9:responseBodyPropertyName} ${10|exists,isTrue,isFalse,isBoolean,isString,isNumber,sArray,matches ^regex$,== value,!= value,> value,>= value,< value,<= value,startsWith value,endWith value,includes value,contains value|}",
+      "${0}"
+    ]
+  },
+  "HTTP DELETE request": {
+    "scope": "http,rest",
+    "prefix": ["###"],
+    "description": "Test region for an HTTP DELETE request.",
+    "body": [
+      "### ${1:Delete ${2:sample}}}",
+      "# @name ${2:sampleTest}",
+      "# @ref ${3:referencedTest}",
+      "DELETE /${4:endpoint}/{{${5:id}}}",
+      "Authorization: oauth2 client_credentials clientCredentials",
+      "",
+      "?? status == ${6|202,204|}",
+      "${0}"
+    ]
+  },
+  "Sample CRUD requests": {
+    "scope": "http,rest",
+    "prefix": ["# @", "###"],
+    "description": "Sequence of HTTP CRUD requests.",
+    "body": [
+      "# @import ../../common.http",
+      "",
+      "@getFilter=FILTER",
+      "@propertyA=PropertyA",
+      "@propertyB=PropertyB",
+      "@updatedPropertyA=UpdatedPropertyA",
+      "@updatedPropertyB=UpdatedPropertyB",
+      "",
+      "### Get samples for pre-test cleanup",
+      "# @name preCleanupGetSamples",
+      "GET /samples?filter={{getFilter}}",
+      "Authorization: oauth2 client_credentials clientCredentials",
+      "",
+      "?? status == 200",
+      "",
+      "### Delete sample for pre-test cleanup",
+      "# @name preCleanupSamples",
+      "# @ref preCleanupGetSamples",
+      "{{",
+      "  if (!preCleanupGetSamples?.length) {",
+      "    exports.\\$cancel = true;",
+      "  } else {",
+      "    let ids = preCleanupGetSamples.map(a => a.id);",
+      "    exports.ids = ids;",
+      "  }",
+      "}}",
+      "# @loop for id of ids",
+      "DELETE /samples/{{id}}",
+      "Authorization: oauth2 client_credentials clientCredentials",
+      "",
+      "?? status == 204",
+      "",
+      "### Create sample",
+      "# @name createSample",
+      "POST /samples",
+      "Authorization: oauth2 client_credentials clientCredentials",
+      "Content-Type: application/json",
+      "{",
+      "  \"propertyA\": \"{{propertyA}}\",",
+      "  \"propertyB\": \"{{propertyB}}\"",
+      "}",
+      "",
+      "?? status == 201",
+      "",
+      "?? body id isString",
+      "?? body propertyA == {{propertyA}}",
+      "?? body propertyB == {{propertyB}}",
+      "",
+      "?? header Location endsWith {{createSample.id}}",
+      "",
+      "### Get sample by ID",
+      "# @name getSampleById",
+      "# @ref createSample",
+      "GET /samples/{{createSample.id}}",
+      "Authorization: oauth2 client_credentials clientCredentials",
+      "",
+      "?? status == 200",
+      "",
+      "?? body id == {{createSample.id}}",
+      "?? body propertyA == {{propertyA}}",
+      "?? body propertyB == {{propertyB}}",
+      "",
+      "### Update sample",
+      "# @name updateSample",
+      "# @ref createSample",
+      "PATCH /samples/{{createSample.id}}",
+      "Authorization: oauth2 client_credentials clientCredentials",
+      "Content-Type: application/json",
+      "{",
+      "  \"propertyA\": \"{{updatedPropertyA}}\",",
+      "  \"propertyB\": \"{{updatedPropertyB}}\"",
+      "}",
+      "",
+      "?? status == 204",
+      "",
+      "### Get updated sample by ID",
+      "# @name getUpdatedSampleById",
+      "# @ref createSample",
+      "# @ref updateSample",
+      "GET /samples/{{createSample.id}}",
+      "Authorization: oauth2 client_credentials clientCredentials",
+      "",
+      "?? status == 200",
+      "",
+      "?? body id == {{createSample.id}}",
+      "?? body propertyA == {{updatedPropertyA}}",
+      "?? body propertyB == {{updatedPropertyB}}",
+      "",
+      "### Delete sample for post-test cleanup",
+      "# @name postCleanupSamples",
+      "# @ref createSample",
+      "{{",
+      "  if (!createSample) {",
+      "    exports.\\$cancel = true;",
+      "  }",
+      "}}",
+      "DELETE /samples/{{createSample.id}}",
+      "Authorization: oauth2 client_credentials clientCredentials",
+      "",
+      "?? status == 204"
+    ]
+  },
+  "Simple STATUS assetion": {
+    "scope": "http,rest",
+    "prefix": ["??"],
+    "description": "Validates HTTP response status.",
+    "body": [
+      "?? status ${1|==,!=,>,>=,<,<=,startsWith,endWith|} ${2|200,201,204,400,401,404,409,20,2,40,4|}"
+    ]
+  },
+  "Simple BODY assetion": {
+    "scope": "http,rest",
+    "prefix": ["??"],
+    "description": "Validates a simple property of the HTTP response body against a simple condition.",
+    "body": [
+      "?? body ${1:testResponsePropertyName} ${2|exists,isTrue,isFalse,isBoolean,isString,isNumber,sArray,matches ^regex$,== value,!= value,> value,>= value,< value,<= value,startsWith value,endWith value,includes value,contains value|}"
+    ]
+  },
+  "Simple HEADER assetion": {
+    "scope": "http,rest",
+    "prefix": ["??"],
+    "description": "Validates an HTTP response header against a simple condition.",
+    "body": [
+      "?? header ${1:responseHeaderName} ${2|exists,isTrue,isFalse,isBoolean,isString,isNumber,sArray,matches ^regex$,== value,!= value,> value,>= value,< value,<= value,startsWith value,endWith value,includes value,contains value|}"
+    ]
+  },
+  "JavaScript RESPONSE assetion": {
+    "scope": "http,rest",
+    "prefix": ["??"],
+    "description": "Validates an HTTP response property against a simple or complex condition using JavaScript.",
+    "body": [
+      "?? js response.${1:parsedBody}.${2:pathToTheProperty} ${3|exists,isTrue,isFalse,isBoolean,isString,isNumber,sArray,matches ^regex$,== value,!= value,> value,>= value,< value,<= value,startsWith value,endWith value,includes value,contains value|}"
+    ]
+  },
+  "JavaScript BODY assetion": {
+    "scope": "http,rest",
+    "prefix": ["??"],
+    "description": "Validates a complex property of the HTTP response against a simple or complex condition using JavaScript.",
+    "body": [
+      "?? js ${1:responseBodyVariableName.propertyName} ${2|exists,isTrue,isFalse,isBoolean,isString,isNumber,sArray,matches ^regex$,== value,!= value,> value,>= value,< value,<= value,startsWith value,endWith value,includes value,contains value|}"
+    ]
+  },
+  "Import file": {
+    "scope": "http,rest",
+    "prefix": ["# @"],
+    "description": "Adds a file import statement.",
+    "body": [
+      "# @import ${1:relativePath}.http"
+    ]
+  },
+  "Add name": {
+    "scope": "http,rest",
+    "prefix": ["# @"],
+    "description": "Adds test region name (can be used for response variable, too).",
+    "body": [
+      "# @name ${1:testOrResponseVariableName}"
+    ]
+  },
+  "Add title": {
+    "scope": "http,rest",
+    "prefix": ["# @"],
+    "description": "Adds a title to the test region (title is used in CLI output and outline view).",
+    "body": [
+      "# @title ${1:title}"
+    ]
+  },
+  "Add soft reference": {
+    "scope": "http,rest",
+    "prefix": ["# @"],
+    "description": "Adds a reference to another test or response variable (referenced test will execute once until environment is reset).",
+    "body": [
+      "# @ref ${1:referencedTestOrResponseVariableName}"
+    ]
+  },
+  "Add hard reference": {
+    "scope": "http,rest",
+    "prefix": ["# @"],
+    "description": "Adds a reference to another test or response variable (referenced test will execute for every reference).",
+    "body": [
+      "# @forceRef ${1:referencedTestOrResponseVariableName}"
+    ]
+  },
+  "Add loop for item of array": {
+    "scope": "http,rest",
+    "prefix": ["# @"],
+    "description": "Loops through items in the array of data.",
+    "body": [
+      "# @loop for ${1:item} of ${2:array}"
+    ]
+  },
+  "Add loop for index from 0 to max": {
+    "scope": "http,rest",
+    "prefix": ["# @"],
+    "description": "Creates a variable named '$index' holding an integer value of the loop iteration from 0 to the max number specified.",
+    "body": [
+      "# @loop for ${1:number}"
+    ]
+  },
+  "Add loop while": {
+    "scope": "http,rest",
+    "prefix": ["# @"],
+    "description": "Executes test until the while condition is not longer met.",
+    "body": [
+      "# @while ${1:condition}"
+    ]
+  },
+  "Add sleep time": {
+    "scope": "http,rest",
+    "prefix": ["# @"],
+    "description": "Adds sleep time (in milliseconds) before the request.",
+    "body": [
+      "# @sleep ${1:sleepTimeInMilliseconds}"
+    ]
+  },
+  "Disable certificate validation": {
+    "scope": "http,rest",
+    "prefix": ["# @"],
+    "description": "Turns off certificate validation to allow https connections for self-signed (and other not properly signed) certificate in non-production environments.",
+    "body": [
+      "# @no-reject-unauthorized"
+    ]
+  },
+  "Set OAuth 2.0 variable (from environment variables)": {
+    "scope": "http,rest",
+    "prefix": ["@"],
+    "description": "Adds common variables for the OAuth 2.0 (or OpenID) authorization using environment variables.",
+    "body": [
+      "@${1:prefix}_clientId={{${2:clientId}}}",
+      "@$1_clientSecret={{${3:clientSecret}}}",
+      "${4:@$1_scope={{${5:scope}\\}\\}}",
+      "${6:@$1_audience={{${7:audience}\\}\\}}",
+      "@$1_tokenEndpoint={{${8:tokenUrl}}}",
+      "${9:@$1_authorizationEndpoint={{${10:authorizationUrl}\\}\\}}",
+      "${11:@$1_useAuthorizationHeader=${13|true,false|}}"
+    ]
+  },
+  "Set OAuth 2.0 variable (hard-coded)": {
+    "scope": "http,rest",
+    "prefix": ["@"],
+    "description": "Adds common variables for the OAuth 2.0 (or OpenID) authorization using hard coded values.",
+    "body": [
+      "@${1:prefix}_clientId=${2:clientId}",
+      "@$1_clientSecret=${3:clientSecret}",
+      "${4:@$1_scope=${5:scope}}",
+      "${6:@$1_audience=${7:audience}}",
+      "@$1_tokenEndpoint=https://${8:tokenUrl}",
+      "${9:@$1_authorizationEndpoint=https://${10:authorizationUrl}}",
+      "${11:@$1_useAuthorizationHeader=${13|true,false|}}"
+    ]
+  },
+  "Add authorization header": {
+    "scope": "http,rest",
+    "prefix": ["Authorization"],
+    "description": "Adds an authorization header for the request.",
+    "body": [
+      "Authorization: ${1|oauth2,Bearer,openid,Basic|} ${2|client_credentials,authorization_code,{{bearerToken}},{{user}},implicit,password,device_code|} ${3|clientCredentials,credentialsVariablePrefix,{{password}}|}",
+    ]
+  },
+  "Add content type header": {
+    "scope": "http,rest",
+    "prefix": ["Content-type"],
+    "description": "Adds common content type describing request input data.",
+    "body": [
+      "Content-Type: ${1|application/json,application/merge-patch+json,application/json-patch+json|}"
+    ]
+  }
+}

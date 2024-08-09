@@ -1,0 +1,14 @@
+@clientCredentials_clientId={{clientId}}
+@clientCredentials_clientSecret={{clientSecret}}
+@clientCredentials_scope={{scope}}
+@clientCredentials_tokenEndpoint={{tokenUrl}}
+@clientCredentials_useAuthorizationHeader=true
+
+@authCode_clientId={{clientId}}
+@authCode_clientSecret={{clientSecret}}
+@authCode_scope={{scope}}
+@authCode_tokenEndpoint={{tokenUrl}}
+@authCode_authorizationEndpoint={{authorizationUrl}}
+@authCode_useAuthorizationHeader=true
+
+@host={{baseUrl}}

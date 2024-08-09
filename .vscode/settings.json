@@ -1,0 +1,60 @@
+{
+  "httpyac.addStreamingResponsesToHistory": true,
+  "httpyac.codelens": {
+    "generateCode": true,
+    "sendAll": true,
+    "sendRepeat": true,
+    "sendSelected": true,
+    "showResponse": true,
+    "showResponseHeaders": true,
+    "showVariables": true,
+    "validateVariables": true,
+    "saveResponse": true,
+    "resetEnvironment": true,
+    "generateCodeSelectLanguage": true,
+    "clearHistory": true
+  },
+  "httpyac.environmentPickMany": false,
+  "httpyac.environmentSelectedOnStart": [
+    "localhost"
+  ],
+  "httpyac.environmentStoreSelectedOnStart": false,
+  "httpyac.environmentUseSameForAllFiles": true,
+  "httpyac.useDecorationProvider": true,
+  "httpyac.useMethodInSendCodeLens": true,
+  "httpyac.responseStorage": "global",
+  "httpyac.responseViewColumn": "beside",
+  "httpyac.environmentShowStatusBarItem": true,
+  "httpyac.responseViewMode": "reuse",
+  "httpyac.decorationInactiveRegion": {
+    "border": "dotted rgba(127, 127, 127, 80%)",
+    "borderWidth": "0 0 2px 0",
+    "isWholeLine": true
+  },
+  "httpyac.generateCodeDefaultLanguage": {
+    "target": "shell",
+    "client": "curl"
+  },
+  "httpyac.logOutputChannelOptions": {
+  "responseBodyPrettyPrint": true,
+    "requestOutput": true,
+    "requestHeaders": true,
+    "requestBodyLength": 2048,
+    "responseHeaders": true,
+    "responseBodyLength": 4096
+  },
+  "httpyac.responseViewContent": "full",
+  "httpyac.useCodeLensInNotebook": true,
+  "httpyac.requestGotOptions": {
+    "https": {
+      "rejectUnauthorized": false
+    }
+  },
+  "httpyac.testResetEnvBeforeRun": true,
+  "httpyac.maxHistoryItems": 25,
+  "breadcrumbs.enabled": false,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "workbench.editor.enablePreview": true
+}

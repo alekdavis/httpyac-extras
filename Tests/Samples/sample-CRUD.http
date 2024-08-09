@@ -1,0 +1,100 @@
+# @import ../common.http
+
+@getFilter=FILTER
+@propertyA=PropertyA
+@propertyB=PropertyB
+@updatedPropertyA=UpdatedPropertyA
+@updatedPropertyB=UpdatedPropertyB
+
+### Get samples for pre-test cleanup
+# @name preCleanupGetSamples
+GET /samples?filter={{getFilter}}
+Authorization: oauth2 client_credentials clientCredentials
+
+?? status == 200
+
+### Delete sample for pre-test cleanup
+# @name preCleanupSamples
+# @ref preCleanupGetSamples
+{{
+  if (!preCleanupGetSamples?.length) {
+    exports.$cancel = true;
+  } else {
+    let ids = preCleanupGetSamples.map(a => a.id);
+    exports.ids = ids;
+  }
+}}
+# @loop for id of ids
+DELETE /samples/{{id}}
+Authorization: oauth2 client_credentials clientCredentials
+
+?? status == 204
+
+### Create sample
+# @name createSample
+POST /samples
+Authorization: oauth2 client_credentials clientCredentials
+Content-Type: application/json
+{
+  "propertyA": "{{propertyA}}",
+  "propertyB": "{{propertyB}}"
+}
+
+?? status == 201
+
+?? body id isString
+?? body propertyA == {{propertyA}}
+?? body propertyB == {{propertyB}}
+
+?? header Location endsWith {{createSample.id}}
+
+### Get sample by ID
+# @name getSampleById
+# @ref createSample
+GET /samples/{{createSample.id}}
+Authorization: oauth2 client_credentials clientCredentials
+
+?? status == 200
+
+?? body id == {{createSample.id}}
+?? body propertyA == {{propertyA}}
+?? body propertyB == {{propertyB}}
+
+### Update sample
+# @name updateSample
+# @ref createSample
+PATCH /samples/{{createSample.id}}
+Authorization: oauth2 client_credentials clientCredentials
+Content-Type: application/json
+{
+  "propertyA": "{{updatedPropertyA}}",
+  "propertyB": "{{updatedPropertyB}}"
+}
+
+?? status == 204
+
+### Get updated sample by ID
+# @name getUpdatedSampleById
+# @ref createSample
+# @ref updateSample
+GET /samples/{{createSample.id}}
+Authorization: oauth2 client_credentials clientCredentials
+
+?? status == 200
+
+?? body id == {{createSample.id}}
+?? body propertyA == {{updatedPropertyA}}
+?? body propertyB == {{updatedPropertyB}}
+
+### Delete sample for post-test cleanup
+# @name postCleanupSamples
+# @ref createSample
+{{
+  if (!createSample) {
+    exports.$cancel = true;
+  }
+}}
+DELETE /samples/{{createSample.id}}
+Authorization: oauth2 client_credentials clientCredentials
+
+?? status == 204
