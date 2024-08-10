@@ -13,36 +13,36 @@ This document explains what you need to do to create your first REST API test pr
 
 The following instructions assume that the REST API you will be testing used OAuth 2.0 with the client credentials or the authorization code grant. If the REST API uses a different authorization method, adjust the steps accordingly.
 
-1. Clone this repository to a local folder (project folder).
-1. Delete the `.git` subfolder from the project folder.
-1. In VSCode, open the project folder to load the solution.
-1. In the `http-client.env.json` file (under the `env` folder):
+- Clone this repository to a local folder (project folder).
+- Delete the `.git` subfolder from the project folder.
+- In VSCode, open the project folder to load the solution.
+- In the `http-client.env.json` file (under the `env` folder):
 
-- Define the environment sections to reflect your environments.
-- In each environment section of the `http-client.env.json` file:
+  - Define the environment sections to reflect your environments.
+  - In each environment section of the `http-client.env.json` file:
 
-  - Set the `baseUrl` value to reflect the base URL of the REST API you will be testing.
-  - If you are using OAuth 2.0 with the client credentials grant (or the authorization code) grant, define the `tokenUrl`, `clientId`, and (if you are requered to specify the scope) `scope` values.
-  - If you are using OAuth 2.0 with the authorization code grant, also define the `authorizationUrl` value (if not, you do not need it).
+    - Set the `baseUrl` value to reflect the base URL of the REST API you will be testing.
+    - If you are using OAuth 2.0 with the client credentials grant (or the authorization code) grant, define the `tokenUrl`, `clientId`, and (if you are requered to specify the scope) `scope` values.
+    - If you are using OAuth 2.0 with the authorization code grant, also define the `authorizationUrl` value (if not, you do not need it).
 
-- Save the `http-client.env.json` file.
+  - Save the `http-client.env.json` file.
 
-1. Duplicate the `http-client.private.SAMPLE.env.json` file (under the `env` folder) and re-name it to `http-client.private.env.json` (keep the original `http-client.private.SAMPLE.env.json` file as-is for now).
-1. In the `http-client.private.env.json` file:
+- Duplicate the `http-client.private.SAMPLE.env.json` file (under the `env` folder) and re-name it to `http-client.private.env.json` (keep the original `http-client.private.SAMPLE.env.json` file as-is for now).
+- In the `http-client.private.env.json` file:
 
-- Adjust the environment sections to reflect the same environments as in the `http-client.env.json` file.
-- In each environment section of the `http-client.private.env.json` file:
+  - Adjust the environment sections to reflect the same environments as in the `http-client.env.json` file.
+  - In each environment section of the `http-client.private.env.json` file:
 
-  - Define the `clientSecret` value to match the OAuth 2.0 client secret.
+    - Define the `clientSecret` value to match the OAuth 2.0 client secret.
 
-- Save the `http-client.private.env.json` file.
-- Replace the contens of the `http-client.private.SAMPLE.env.json` file with the contents of the `http-client.private.env.json` file and delete the `clientSecret` values in all environment sections. Save the `http-client.private.SAMPLE.env.json` file.
-- Rename the `Samples` folder (under the `Tests` filder) after the endpoint or entity you will be testing (use a capitalized plural noun), e.g. `Users`, `Accounts`, `Groups`, `Orders`, etc.
-- Rename the `sample-CRUD.http` file to reflect the entity and operations or types of testing you will be performing (use a lower-case singular noun), e.g. `user-CRUD.http`, `account-READ.http`, `group-GET.http`, `order-ADHOC.http`, etc.
-- In the renamed `sample-CRUD.http` file:
+  - Save the `http-client.private.env.json` file.
+  - Replace the contens of the `http-client.private.SAMPLE.env.json` file with the contents of the `http-client.private.env.json` file and delete the `clientSecret` values in all environment sections. Save the `http-client.private.SAMPLE.env.json` file.
+  - Rename the `Samples` folder (under the `Tests` filder) after the endpoint or entity you will be testing (use a capitalized plural noun), e.g. `Users`, `Accounts`, `Groups`, `Orders`, etc.
+  - Rename the `sample-CRUD.http` file to reflect the entity and operations or types of testing you will be performing (use a lower-case singular noun), e.g. `user-CRUD.http`, `account-READ.http`, `group-GET.http`, `order-ADHOC.http`, etc.
+  - In the renamed `sample-CRUD.http` file:
 
-  - Replace all instances of `Sample` and `sample` with the name you picked in the previous step (make sure you use case-sensitive search and replace).
-  - Adjust the test code for the REST API you will be testing.
+    - Replace all instances of `Sample` and `sample` with the name you picked in the previous step (make sure you use case-sensitive search and replace).
+    - Adjust the test code for the REST API you will be testing.
 
 Once your changes are finalized, you can run the tests.
 
