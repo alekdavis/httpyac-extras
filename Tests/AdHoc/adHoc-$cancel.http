@@ -1,0 +1,47 @@
+@validTitle1=Overview
+@validTitle2=Wake up to WonderWidgets!
+@invalidTitle=XYZ
+@host=https://httpbin.org
+
+### Test A (initial test which is a dependency for other tests)
+# @name test_a_results
+GET /json
+
+### Test B (must be enabled since item is a valid string)
+# @ref test_a_results
+{{
+    var item = test_a_results.slideshow.slides.find(item => item.title == validTitle1)?.title;
+    if (item == undefined || item == null) {
+        console.log("Skipping B");
+        exports.$cancel = true;
+    } else {
+        exports.item = item;
+    }
+}}
+GET /anything/{{item}}
+
+### Test C (must be disabled since item is undefined or null)
+# @ref test_a_results
+{{
+    var item = test_a_results.slideshow.slides.find(item => item.title == invalidTitle)?.title;
+    if (item == undefined || item == null) {
+        console.log("Skipping C");
+        exports.$cancel = true;
+    } else {
+        exports.item = item;
+    }
+}}
+GET /anything/{{item}}
+
+### Test D (must be enabled since item is a valid string)
+# @ref test_a_results
+{{
+    var item = test_a_results.slideshow.slides.find(item => item.title == validTitle2)?.title;
+    if (item == undefined || item == null) {
+        console.log("Skipping D");
+        exports.$cancel = true;
+    } else {
+        exports.item = item;
+    }
+}}
+GET /anything/{{item}}

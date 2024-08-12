@@ -1,0 +1,17 @@
+@host=https://httpbin.org
+
+{{+
+  const token = "test";
+
+  exports.defaultHeaders = {
+    'Content-Type': 'text/html',
+    'Authorization': `Bearer ${token}`
+  };
+}}
+
+###
+GET /anything
+...defaultHeaders
+
+GET /anything
+...defaultHeaders

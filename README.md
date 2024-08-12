@@ -4,10 +4,10 @@ This repo illustrates how to use [httpYac](https://httpyac.github.io/) for REST 
 
 ## Overview
 
-This document describes the project structure and explains the purpose of the project files and folders. For additional information, also check
+This document describes the project structure and explains the purpose of the project files and folders. For additional information, check:
 
-- [GETTING STARTED](<GETTING STARTED.md>)
-- [CONVENTIONS](CONVENTIONS.md)
+- [SAMPLES](SAMPLES.md>)
+- [TIPS](TIPS.md)
 - [FAQs](FAQs.md)
 
 ## Project structure
@@ -63,8 +63,15 @@ The `http-client.private.SAMPLE.env.json` under the `env` folder is a sample of 
 
 ### [`Tests` folder](Tests)
 
-The `Tests` folder holds the `.http` test files, which can be grouped inside of subfolders.
+The `Tests` folder holds the `.http` test files, which can be grouped inside of subfolders. For the illustration purposes, the `Tests` folder holds two subfolders:
 
-### [`common.http` file](Tests/common.http)
+- `AdHoc`
+- `Samples`
 
-The `common.http` file under the `Tests` folder holds code that is reused by the test files (that reference it). You can have multiple shared `.http` files in different folders. This sample shared file defines common variables reused in all tests including the base URL of the tested endpointsd (`@host`) and the OAuth 2.0 properties (variables used for the client credentials grant start with the `@clientCredentials_` prefix, variables used for the authorization code grant start with the `@authCode_` prefix).
+### [`Tests/AdHoc` folder](Tests/AdHoc)
+
+The `AdHoc` folder contains several test files that use the public REST APIs published at [httpbin.org](https://httpbin.org/) to illustrate a few httpYac capabilities. All ad-hoc tests in this folder must be operational (you can run them as-is).
+
+### [`Tests/Samples` folder](Tests/Samples)
+
+The `Samples` folder contains a fake example of a typical test suite covering CRUD operations against an imaginary REST API. You can use this example as a reference, but keep in mind that as-is, they are not operational (you cannot run them until you make the required changes). For additional information about the samples, see [SAMPLES](SAMPLES.md).

@@ -1,0 +1,48 @@
+@validTitle1=Overview
+@validTitle2=Wake up to WonderWidgets!
+@invalidTitle=XYZ
+@callRequest={{true}}
+@host=https://httpbin.org
+
+### Test 0 (initial test which is a dependency for test 1, 2, 3, 4)
+# @name results
+GET /json
+
+### Test 1 (ok)
+# @ref results
+{{
+    var item = results.slideshow.slides.find(item => item.title == validTitle1)?.title;
+    exports.item = item
+}}
+GET /anything/{{item}}
+
+### Test 2 (error 'invalidItem is not defined' as expected)
+# @ref results
+{{
+    var item = results.slideshow.slides.find(item => item.title == invalidTitle)?.title;
+    exports.item = item
+}}
+# @disabled
+GET /anything/{{item}}
+
+### Test 3 (must be enabled since item is a valid string)
+# @ref results
+{{
+    var item = results.slideshow.slides.find(item => item.title == validTitle2)?.title;
+    exports.item = item
+}}
+# @disabled !item
+GET /anything/{{item}}
+
+### Test 4 (must be disabled since item is undefined or null)
+# @ref results
+{{
+    var item = results.slideshow.slides.find(item => item.title == invalidTitle)?.title;
+    exports.item = item
+}}
+# @disabled !item
+GET /anything/{{item}}
+
+### Test 6 (must be enabled based on hard coded variable)
+# @disabled !callRequest
+GET /anything/{{item}}
