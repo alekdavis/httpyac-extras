@@ -8,4 +8,10 @@ The idea behind the CRUD REST API test example is to illustrate how it can be im
 
 The test uses standard names for the object properies and uses them to detect if the object exists before the CRUD test sequence is executed. If the object is found (in case a previous run failed and did not complete the cleanup step), it performs a pre-rest cleanup. Once the pre-test cleanup is done, the CRUD test sequence creates the test object, performs a get, then an update, validates that the updated object reflects the modified properties, and once all tests are done, deletes the test object.
 
-NOTE: The test code in the sample CRUD test file is generated with the help of the `Sample CRUD requests` code snippet. Once you figure out how to implement CRUD tests for your application, you can adjust the [code snippet](../../.vscode/http.code-snippets) to better fit your needs.
+## Usage
+
+For additional information about using and adjusting the sample tests, see [Setting started](<GETTING STARTED.md>).
+
+## Notes
+
+The test code in the sample CRUD test file is generated with the help of the `Sample CRUD requests` code snippet. Once you figure out how to implement CRUD tests for your application, you can adjust the [code snippet](../../.vscode/http.code-snippets) to better fit your needs.

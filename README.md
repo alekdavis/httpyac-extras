@@ -6,7 +6,7 @@ This repo illustrates how to use [httpYac](https://httpyac.github.io/) for REST 
 
 This document describes the project structure and explains the purpose of the project files and folders. For additional information, check:
 
-- [SAMPLES](SAMPLES.md)
+- [GETTING STARTED](<GETTING STARTED.md>)
 - [TIPS](TIPS.md)
 - [FAQs](FAQs.md)
 
