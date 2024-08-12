@@ -1,6 +1,6 @@
 # `.vscode` folder
 
-The `.vscode` folder holds the VSCode-specific project files. Typically, the `.vscode` folder and all files under it should be excluded from the source control, but we need to include two important files: `settings.json` and `http.code-snippets` (as explained in the [main README](../#gitignore-file-file) file).
+The `.vscode` folder holds the VSCode-specific project files. Typically, the `.vscode` folder and all files under it should be excluded from the source control, but we need to include two important files: `settings.json` and `http.code-snippets` (as explained in the [main README file](../#gitignore-file-file)).
 
 ## [`settings.json` file](settings.json)
 
