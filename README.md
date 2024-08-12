@@ -40,12 +40,12 @@ The `.httpyac.config.js` file holds the basic settings for all requests, logging
 
 ### [`.vscode` folder](.vscode)
 
-The `.vscode` folder holds Visual Studio Code-specific files, most of which do not need to be checked into a source control system; however, there are several exceptions described in the [`.vscode` folder README](.vscode/README.md) file.
+The `.vscode` folder holds Visual Studio Code-specific files, most of which do not need to be checked into a source control system; however, there are several exceptions described in the [`.vscode` folder documentation](.vscode).
 
 ### [`env` folder](env)
 
-The `env` folder holds the files containing environment variables. For additional information about the environment folder and files, see the [`env` folder README](env/README.md) file.
+The `env` folder holds the files containing environment variables. For additional information about the environment folder and files, see the [`env` folder documentstion](env).
 
 ### [`Tests` folder](Tests)
 
-The `Tests` folder holds the test files which can be logically grouped in subfolders. For additional information about the test folder and files, see the [`Tests` folder README](env/README.md) file.
+The `Tests` folder holds the test files which can be logically grouped in subfolders. For additional information about the test folder and files, see the [`Tests` folder documentation](Tests).
