@@ -36,13 +36,19 @@ The following instructions assume that the REST API you will be testing used OAu
     - Define the `clientSecret` value to match the OAuth 2.0 client secret.
 
   - Save the `http-client.private.env.json` file.
-  - Replace the contens of the `http-client.private.SAMPLE.env.json` file with the contents of the `http-client.private.env.json` file and delete the `clientSecret` values in all environment sections. Save the `http-client.private.SAMPLE.env.json` file.
-  - Rename the `Samples` folder (under the `Tests` filder) after the endpoint or entity you will be testing (use a capitalized plural noun), e.g. `Users`, `Accounts`, `Groups`, `Orders`, etc.
-  - Rename the `sample-CRUD.http` file to reflect the entity and operations or types of testing you will be performing (use a lower-case singular noun), e.g. `user-CRUD.http`, `account-READ.http`, `group-GET.http`, `order-ADHOC.http`, etc.
-  - In the renamed `sample-CRUD.http` file:
 
-    - Replace all instances of `Sample` and `sample` with the name you picked in the previous step (make sure you use case-sensitive search and replace).
-    - Adjust the test code for the REST API you will be testing.
+- Replace the contens of the `http-client.private.SAMPLE.env.json` file with the contents of the `http-client.private.env.json` file and delete the `clientSecret` values in all environment sections. Save the `http-client.private.SAMPLE.env.json` file.
+- Rename the `Samples` folder (under the `Tests` filder) after the endpoint or entity you will be testing (use a capitalized plural noun), e.g. `Users`, `Accounts`, `Groups`, `Orders`, etc.
+- Rename the `sample-CRUD.http` file to reflect the entity and operations or types of testing you will be performing (use a lower-case singular noun), e.g. `user-CRUD.http`, `account-READ.http`, `group-GET.http`, `order-ADHOC.http`, etc.
+- In the renamed `sample-CRUD.http` file:
+
+  - Replace all instances of `Sample` and `sample` with the name you picked in the previous step (make sure you use case-sensitive search and replace).
+  - Adjust the test code for the REST API you will be testing.
+
+- In the `.vscode/settings.json` file:
+
+  - In the `httpyac.environmentSelectedOnStart` setting, set the default startup environment matching one of the environments you defined in the `http-client.env.json` file earlier.
+  - Save the `.vscode/settings.json` file.
 
 Once your changes are finalized, you can run the tests.
 
