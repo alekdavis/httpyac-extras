@@ -3,6 +3,7 @@
 The `Tests` folder holds the `.http` test files, which can be grouped inside of subfolders. For the illustration purposes, the `Tests` folder holds two subfolders:
 
 - [`AdHoc`](#adhoc-folder)
+- [`Demos`](#demos-folder)
 - [`Samples`](#samples-folder)
 
 ## [`AdHoc` folder](AdHoc)
