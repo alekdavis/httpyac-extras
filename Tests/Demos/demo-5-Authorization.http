@@ -1,0 +1,10 @@
+@clientCreds_tokenEndpoint=https://some.auth.service.provider.com/token
+@clientCreds_clientId=some_client_id
+@clientCreds_clientSecret=some_client_secret
+@clientCreds_useAuthorizationHeader=false
+@clientCreds_scope=scopeA scopeB scopeC
+
+### Authorization example (disabled)
+# @disabled
+GET /secured_service HTTP/1.1
+Authorization: oauth2 client_credentials clientCreds
