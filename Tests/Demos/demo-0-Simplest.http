@@ -1,0 +1,13 @@
+GET https://httpbin.org/json
+
+POST https://httpbin.org/anything
+{
+  "a":"b"
+}
+
+PATCH https://httpbin.org/anything
+{
+  "a":"b"
+}
+
+DELETE https://httpbin.org/anything

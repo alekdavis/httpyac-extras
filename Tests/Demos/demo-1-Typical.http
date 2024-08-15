@@ -1,0 +1,23 @@
+@host=https://httpbin.org
+
+### Demo test one
+# @name demoTestOne
+/*
+Test with no dependencies.
+*/
+POST /anything
+  ?query=x
+  &y=z
+{
+  "a":"b"
+}
+
+?? status == 200
+?? status startsWith 20
+?? header content-type includes json
+?? body json exists
+?? body url isString
+?? js demoTestOne.json.a == b
+{{
+  test.hasResponseBody();
+}}

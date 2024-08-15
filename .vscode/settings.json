@@ -56,5 +56,8 @@
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "editor.detectIndentation": false,
-  "workbench.editor.enablePreview": true
+  "workbench.editor.enablePreview": true,
+  "cSpell.words": [
+    "httpyac"
+  ]
 }

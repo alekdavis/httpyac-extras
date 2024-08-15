@@ -1,0 +1,22 @@
+@host=https://httpbin.org
+
+### FOR item OF data
+# @name testForItemOfData
+{{
+  exports.data = [1, 2, 3];
+}}
+# @loop for item of data
+GET https://httpbin.org/anything?item={{item}}
+
+### FOR count
+# @name testForCount
+# @loop for 4
+GET https://httpbin.org/anything?item={{$index}}
+
+### WHILE condition
+# @name testWhileCondition
+{{
+  exports.expression = { index: 0 };
+}}
+# @loop while expression.index < 3
+GET /anything?item={{expression.index++}}

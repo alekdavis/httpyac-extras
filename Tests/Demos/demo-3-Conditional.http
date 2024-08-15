@@ -1,0 +1,24 @@
+@host=https://httpbin.org
+
+### Demo test X
+# @name demoTestX
+POST /anything
+{"a":"x"}
+
+### Demo test Y
+# Skip if test X response 'json.a' value is not 'x' .
+# @name demoTestY
+# @ref demoTestX
+{{
+  exports.$cancel = !(demoTestX.json.a == "x");
+}}
+POST /anything
+
+### Demo test Z
+# Skip if test X response 'json.a' value is "x" .
+# @name demoTestZ
+# @ref demoTestX
+{{
+  exports.$cancel = (demoTestX.json.a == "x");
+}}
+POST /anything
