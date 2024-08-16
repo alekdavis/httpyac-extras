@@ -6,5 +6,5 @@
 
 ### Authorization example (disabled)
 # @disabled
-GET /secured_service HTTP/1.1
+GET https://some.endpoint.provider.com/api/v1/secured_service HTTP/1.1
 Authorization: oauth2 client_credentials clientCreds

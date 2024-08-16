@@ -65,3 +65,5 @@ Authorization: oauth2 authorization_code authCode
 ```
 
 `clientCredentials` and `authCode` are prefixes of the variables defined in the `common.http` file (under the `Tests/Samples` folder). These variables group properties specific for a particular authorization type. The values of these variables get initialized using environment settings defined in the `http-client.private.env.json` file and `http-client.private.env.json` files. For more information on supported authorization types and authorization variables, see [httpYac: Variables: OAth2 / OpenID Connect](https://httpyac.github.io/guide/variables.html#oauth2-openid-connect).
+
+If you do not need samples, delete the [`AdHoc`](Tests/AdHoc/) and [`Demos`](Tests/Demos/) subfolders form the [`Tests`](/Tests/) folder.
