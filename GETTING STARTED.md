@@ -4,10 +4,19 @@ This document explains what you need to do to create your first REST API test pr
 
 ## Prerequisites
 
+Install the following components:
+
 - [VSCode](https://code.visualstudio.com/)
 - [Node.js](https://nodejs.org/)
 - [httpYac CLI](https://httpyac.github.io/guide/installation_cli.html)
 - [httpYac VSCode extension](https://httpyac.github.io/guide/installation_vscode.html)
+
+If your system is behind a firewall, you may need to configure the `npm` proxy before installing the packages. To configure proxy settings, enter the these commands from command prompt (substitute the URLs and ports with the actual values):
+
+```console
+npm config set proxy http://http-proxy-server-address:port
+npm config set https-proxy http://https-proxy-server-address:port
+```
 
 ## Instructions
 
