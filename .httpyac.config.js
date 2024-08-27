@@ -6,7 +6,8 @@ module.exports = {
   "cookieJarEnabled": true,
   "envDirName": 'env',
   "proxyExcludeList": [
-    "localhost"
+    "localhost",
+    "127.0.0.1"
   ],
   "request": {
     "https":  {
