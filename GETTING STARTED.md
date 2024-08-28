@@ -18,6 +18,14 @@ npm config set proxy http://http-proxy-server-address:port
 npm config set https-proxy http://https-proxy-server-address:port
 ```
 
+If you run into issues when making HTTP calls from VSCode, you may want to try setting the following environment variables before launching VSCode:
+
+```console
+SET http_proxy=http://http-proxy-server-address:port
+SET https_proxy=http://https-proxy-server-address:port
+SET no_proxy=localhost,127.0.0.1,yourcompanydomain
+```
+
 ## Instructions
 
 The following instructions assume that the REST API you will be testing used OAuth 2.0 with the client credentials or the authorization code grant. If the REST API uses a different authorization method, adjust the steps accordingly.
