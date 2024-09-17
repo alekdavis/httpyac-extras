@@ -383,6 +383,14 @@
       "# @no-reject-unauthorized"
     ]
   },
+  "Disable request": {
+    "scope": "http,rest",
+    "prefix": ["# @"],
+    "description": "Statically disable request.",
+    "body": [
+      "# @disabled"
+    ]
+  },
   "Set OAuth 2.0 variable (from environment variables)": {
     "scope": "http,rest",
     "prefix": ["@"],
