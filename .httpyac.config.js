@@ -14,5 +14,5 @@ module.exports = {
       "rejectUnauthorized": false
      }
   },
-  "testRunResetEnvBeforeRun": true
+  "testRunResetEnvBeforeRun": false
 }

@@ -50,7 +50,7 @@
       "rejectUnauthorized": false
     }
   },
-  "httpyac.testResetEnvBeforeRun": true,
+  "httpyac.testResetEnvBeforeRun": false,
   "httpyac.maxHistoryItems": 25,
   "breadcrumbs.enabled": false,
   "editor.tabSize": 2,
