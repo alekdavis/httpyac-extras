@@ -13,6 +13,5 @@ module.exports = {
     "https":  {
       "rejectUnauthorized": false
      }
-  },
-  "testRunResetEnvBeforeRun": false
+  }
 }
