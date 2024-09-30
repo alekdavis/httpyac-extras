@@ -10,7 +10,7 @@ The test uses standard names for the object properies and uses them to detect if
 
 ## Usage
 
-For additional information about using and adjusting the sample tests, see [Setting started](<../../GETTING STARTED.md>).
+For additional information about using and adjusting the sample tests, see [Getting started](<../../GETTING STARTED.md>).
 
 ## Notes
 
