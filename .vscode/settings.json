@@ -16,7 +16,6 @@
   },
   "httpyac.environmentPickMany": false,
   "httpyac.environmentSelectedOnStart": [
-    "di"
   ],
   "httpyac.environmentStoreSelectedOnStart": false,
   "httpyac.environmentUseSameForAllFiles": true,
