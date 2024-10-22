@@ -455,6 +455,9 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 !.vscode/*.code-snippets
 
+# httpyac response history
+.httpyac/
+
 # Local file for keeping secrets
 my-secrets.txt
 secrets.txt

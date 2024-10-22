@@ -1,0 +1,5 @@
+@host=https://httpbin.org
+@value=abc
+
+### Bug demo test
+GET /anything?value={{value}}

@@ -18,7 +18,8 @@ The following files and folders are important for the project.
 
 The important modifications to the `.gitignore` file include:
 
-- Inclusion of the VSCoce code snippets, settings, and documentation files that would typically be ignored along with the contents of the `.vscode` folder that holds them.
+- Inclusion of the VSCode code snippets, settings, and documentation files that would typically be ignored along with the contents of the `.vscode` folder that holds them.
+- Exclusion of `.httpyac` folder holding temporary request files.
 - Exclusion of the private environment variable file (`http-client.private.env.json`) intended for local storage of sensitive settings (client secrets, passwords, etc.):
 
 ```text
@@ -26,6 +27,7 @@ The important modifications to the `.gitignore` file include:
 !.vscode/*.md
 !.vscode/settings.json
 !.vscode/*.code-snippets
+.httpyac/
 *.private.env.json
 ```
 

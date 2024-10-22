@@ -16,13 +16,13 @@
   },
   "httpyac.environmentPickMany": false,
   "httpyac.environmentSelectedOnStart": [
-    "localhost"
+    "di"
   ],
   "httpyac.environmentStoreSelectedOnStart": false,
   "httpyac.environmentUseSameForAllFiles": true,
   "httpyac.useDecorationProvider": true,
   "httpyac.useMethodInSendCodeLens": true,
-  "httpyac.responseStorage": "global",
+  "httpyac.responseStorage": "workspace",
   "httpyac.responseViewColumn": "beside",
   "httpyac.environmentShowStatusBarItem": true,
   "httpyac.responseViewMode": "reuse",
@@ -36,7 +36,8 @@
     "client": "curl"
   },
   "httpyac.logOutputChannelOptions": {
-  "responseBodyPrettyPrint": true,
+    "useShort": false,
+    "responseBodyPrettyPrint": true,
     "requestOutput": true,
     "requestHeaders": true,
     "requestBodyLength": 2048,
@@ -50,8 +51,8 @@
       "rejectUnauthorized": false
     }
   },
-  "httpyac.testResetEnvBeforeRun": false,
   "httpyac.maxHistoryItems": 25,
+  "httpyac.testResetEnvBeforeRun": false,
   "breadcrumbs.enabled": false,
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
@@ -59,5 +60,6 @@
   "workbench.editor.enablePreview": true,
   "cSpell.words": [
     "httpyac"
-  ]
+  ],
+  "httpyac.logResetOutputchannel": true
 }
