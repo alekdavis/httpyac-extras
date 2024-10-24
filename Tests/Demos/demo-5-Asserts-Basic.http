@@ -1,0 +1,61 @@
+@host=https://httpbin.org
+
+### Demo simple asserts
+# @name demoSimpleAsserts
+POST /anything
+  ?query=x
+  &y=z
+{
+  "abc":"xyz",
+  "def": [1, 2, 3],
+  "xyz": false
+}
+
+?? status == 200
+?? status startsWith 20
+?? status endsWith 00
+?? status isNumber
+?? status matches ^(200|201|204)$
+?? header content-type includes json
+?? header content-length > 500
+?? body url isString
+?? body json exists
+?? body json.abc matches ^x[a-z]z$
+?? body json.def isArray
+?? body json.def[0] isNumber
+?? body json.xyz isBoolean
+?? body json.xyz isFalse
+
+### Demo JS asserts
+# @name demoJSAsserts
+POST /anything
+  ?query=x
+  &y=z
+{
+  "abc":"xyz",
+  "def": [1, 2, 3],
+  "xyz": false
+}
+
+?? js response.parsedBody.json.abc == xyz
+?? js demoJSAsserts.json.abc == xyz
+
+### Demo test function asserts
+# @name demoTestFunctionAsserts
+POST /anything
+  ?query=x
+  &y=z
+{
+  "abc":"xyz",
+  "def": [1, 2, 3],
+  "xyz": false
+}
+
+{{
+  test.status(200)
+  test.headerContains("content-type", "json")
+  test.hasResponseBody();
+  test('response status code == 200', () => {
+    response.statusCode == 200;
+  });
+}}

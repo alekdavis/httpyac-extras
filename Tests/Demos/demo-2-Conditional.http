@@ -1,0 +1,44 @@
+@host=https://httpbin.org
+
+### Test 1
+# @name test1
+POST /anything
+{"a":"x"}
+
+### Test 2 (not skipped)
+# Skip if test 1 response 'json.a' value is not 'x'.
+# @name test2
+# @ref test1
+{{
+  exports.$cancel = !(test1.json.a == "x");
+}}
+POST /anything
+
+### Test 3 (skipped)
+# Skip if test X response 'json.a' value is "x".
+# @name test3
+# @ref test1
+{{
+  exports.$cancel = (test1.json.a == "x");
+}}
+POST /anything
+
+
+### Test 4 (not skipped)
+# Skip if test 1 response status code is not 200.
+# @name test4
+# @ref test1
+{{
+  exports.$cancel = !(test1Response.statusCode == 200);
+}}
+POST /anything
+
+
+### Test 5 (skipped)
+# Skip if test 1 response status code is 200.
+# @name test5
+# @ref test1
+{{
+  exports.$cancel = (test1Response.statusCode == 200);
+}}
+POST /anything

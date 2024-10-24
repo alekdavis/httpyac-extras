@@ -1,0 +1,23 @@
+@host=https://httpbin.org
+
+### Demo Node.js asserts
+# @name demoNodeNodeJSAsserts
+POST /anything
+  ?query=x
+  &y=z
+{
+  "abc":"xyz",
+  "def": [1, 2, 3],
+  "xyz": true
+}
+
+{{
+  const { equal, deepStrictEqual, match, ok } = require('assert');
+
+  test('valid response', () => {
+    equal(response.statusCode, 200);
+    deepStrictEqual(response.parsedBody.json.def, [1, 2, 3]);
+    match(demoNodeNodeJSAsserts.json.abc, /xyz/);
+    ok(demoNodeNodeJSAsserts.json.xyz);
+  });
+}}

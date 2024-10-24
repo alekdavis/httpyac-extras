@@ -10,8 +10,15 @@
 }}
 
 ###
-GET /anything
+GET /anything?a=b
 ...defaultHeaders
 
-GET /anything
+?? status == 200
+
+POST /anything
+{
+  "x": "y"
+}
 ...defaultHeaders
+
+?? status == 200

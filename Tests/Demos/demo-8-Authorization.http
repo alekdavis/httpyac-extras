@@ -1,0 +1,20 @@
+@clientCreds_tokenEndpoint=https://some.auth.service.provider.com/token
+@clientCreds_clientId=some_client_id
+@clientCreds_clientSecret=some_client_secret
+@clientCreds_useAuthorizationHeader=false
+@clientCreds_scope=scopeA scopeB scopeC
+
+@user=some_user
+@password=some_password
+
+### Authorization using OAuth 2.0 with client credentials (disabled)
+# @disabled
+GET https://some.endpoint.provider.com/api/v1/secured_service
+Authorization: oauth2 client_credentials clientCreds
+
+### Authorization using Basic authentication (disabled)
+# @disabled
+GET https://some.endpoint.provider.com/api/v1/secured_service
+Authorization: Basic {{user}}:{{password}}
+
+# See more examples at https://httpyac.github.io/guide/variables.html#oauth2-openid-connect

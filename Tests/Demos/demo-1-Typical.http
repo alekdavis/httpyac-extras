@@ -1,7 +1,7 @@
 @host=https://httpbin.org
 
-### Demo test one
-# @name demoTestOne
+### Demo test
+# @name demoTest
 /*
 Test with no dependencies.
 */
@@ -13,11 +13,3 @@ POST /anything
 }
 
 ?? status == 200
-?? status startsWith 20
-?? header content-type includes json
-?? body json exists
-?? body url isString
-?? js demoTestOne.json.a == b
-{{
-  test.hasResponseBody();
-}}

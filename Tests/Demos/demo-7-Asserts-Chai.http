@@ -1,0 +1,38 @@
+@host=https://httpbin.org
+@value=abc
+
+/*
+To add support for CHAI.JS, make sure to:
+
+- Use Node.JS v23.x (or higher).
+- Add the most recent v4.x version of CHAI.JS to the project (e.g. npm install chai@4.5.0).
+
+This should add the required dependenies to the project (package*.json files and node_modules folder).
+*/
+
+### Demo chai.js EXPECT
+GET /anything?value={{value}}
+{{
+  const { expect } = require('chai');
+  test('status code 200 via EXPECT', () => {
+    expect(response.statusCode).to.equal(200);
+  });
+}}
+
+### Demo chai.js ASSERT
+GET /anything?value={{value}}
+{{
+  const { assert } = require('chai');
+  test('status code 200 via ASSERT', () => {
+    assert.equal(response.statusCode, 200);
+  });
+}}
+
+### Demo chai.js SHOULD
+GET /anything?value={{value}}
+{{
+  require('chai').should();
+  test('status code 200 via SHOULD', () => {
+    response.statusCode.should.be.equal(200);
+  });
+}}

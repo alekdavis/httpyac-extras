@@ -458,6 +458,8 @@ $RECYCLE.BIN/
 # httpyac response history
 .httpyac/
 
+# Package loc
+
 # Local file for keeping secrets
 my-secrets.txt
 secrets.txt
