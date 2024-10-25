@@ -1,14 +1,14 @@
-@host=https://httpbin.org
-@value=abc
-
 /*
 To add support for CHAI.JS, make sure to:
 
 - Use Node.JS v23.x (or higher).
-- Add the most recent v4.x version of CHAI.JS to the project (e.g. npm install chai@4.5.0).
+- Add the most recent v4.x (not v5!) version of CHAI.JS to the project (e.g. npm install chai@4.5.0).
 
 This should add the required dependenies to the project (package*.json files and node_modules folder).
 */
+
+@host=https://httpbin.org
+@value=abc
 
 ### Demo chai.js EXPECT
 GET /anything?value={{value}}
