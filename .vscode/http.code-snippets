@@ -1,8 +1,16 @@
 {
+  "Import file": {
+    "scope": "http,rest",
+    "prefix": ["# @","import","include","file"],
+    "description": "Import a local file.",
+    "body": [
+      "# @import ${1:pathRelativeToCurrentFile}/${2:importedFileName}.http"
+    ]
+  },
   "Any HTTP request": {
     "scope": "http,rest",
-    "prefix": ["###"],
-    "description": "Test region for any type of HTTP request.",
+    "prefix": ["###","http","request","region"],
+    "description": "Create a test region for any type of HTTP request.",
     "body": [
       "### ${1:Test title}",
       "${2:/*\n${3:Optional test description.}\n*/}",
@@ -22,8 +30,8 @@
   },
   "HTTP GET (ITEM) request": {
     "scope": "http,rest",
-    "prefix": ["###"],
-    "description": "Test region for an HTTP GET request returning a single item.",
+    "prefix": ["###","http","request","region","get","item","single","one"],
+    "description": "Create a test region for an HTTP GET request returning a single item.",
     "body": [
       "### ${1:Get ${2:sample}}",
       "# @name ${3:$2Json}",
@@ -37,10 +45,10 @@
       "${0}"
     ]
   },
-  "HTTP GET (ARRAY) request": {
+  "HTTP GET (LIST) request": {
     "scope": "http,rest",
-    "prefix": ["###"],
-    "description": "Test region for an HTTP GET request returning an array.",
+    "prefix": ["###","http","request","region","get","list","collection","array","many","multiple"],
+    "description": "Create a test region for an HTTP GET request returning a list.",
     "body": [
       "### ${1:Get ${2:samples}}",
       "# @name ${3:$2Json}",
@@ -57,8 +65,8 @@
   },
   "HTTP POST request": {
     "scope": "http,rest",
-    "prefix": ["###"],
-    "description": "Test region for an HTTP POST request.",
+    "prefix": ["###","http","request","region","post","create"],
+    "description": "Create test region for an HTTP POST request.",
     "body": [
       "### ${1:Create ${2:sample}}",
       "# @name ${3:$2Json}",
@@ -80,8 +88,8 @@
   },
   "HTTP PUT request": {
     "scope": "http,rest",
-    "prefix": ["###"],
-    "description": "Test region for an HTTP PUT request.",
+    "prefix": ["###","http","request","region","put","replace"],
+    "description": "Create test region for an HTTP PUT request.",
     "body": [
       "### ${1:Replace ${2:sample}}}",
       "# @name ${3:$2Json}",
@@ -98,12 +106,12 @@
       "${0}"
     ]
   },
-  "HTTP PATCH request (JSON-PATCH+JSON)": {
+  "HTTP PATCH request": {
     "scope": "http,rest",
-    "prefix": ["###"],
-    "description": "Test region for an RFC 7396-compliant REST PATCH request with a body holding a single item and application/merge-patch+json content type.",
+    "prefix": ["###","http","request","region","patch","update"],
+    "description": "Create a test region for an RFC 7396-compliant REST PATCH request with a body holding a single item and application/merge-patch+json content type.",
     "body": [
-      "### ${1:Update ${2:sample}}}",
+      "### ${1:Update ${2:sample}}",
       "# @name ${3:$2Json}",
       "${4:# @ref ${5:referencedTest}}",
       "PATCH /${6:endpoint}/{{${7:id}}}",
@@ -121,10 +129,10 @@
   },
   "HTTP PATCH request (MERGE-PATCH+JSON)": {
     "scope": "http,rest",
-    "prefix": ["###"],
-    "description": "Test region for an RFC 6902-compliant REST PATCH request with a body holding an array of patch operations and application/json-patch+json content type.",
+    "prefix": ["###","http","request","region","patch","update"],
+    "description": "Create a test region for an RFC 6902-compliant REST PATCH request with a body holding an array of patch operations and application/json-patch+json content type.",
     "body": [
-      "### ${1:Update ${2:sample}}}",
+      "### ${1:Update ${2:sample}}",
       "# @name ${3:$2Json}",
       "${4:# @ref ${5:referencedTest}}",
       "PATCH /${6:endpoint}/{{${7:id}}}",
@@ -143,8 +151,8 @@
   },
   "HTTP DELETE request": {
     "scope": "http,rest",
-    "prefix": ["###"],
-    "description": "Test region for an HTTP DELETE request.",
+    "prefix": ["###","http","request","region","delete"],
+    "description": "Create a test region for an HTTP DELETE request.",
     "body": [
       "### ${1:Delete ${2:sample}}}",
       "# @name ${2:sampleTest}",
@@ -156,10 +164,10 @@
       "${0}"
     ]
   },
-  "Sample CRUD requests": {
+  "HTTP CRUD requests": {
     "scope": "http,rest",
-    "prefix": ["# @", "###"],
-    "description": "Sequence of HTTP CRUD requests.",
+    "prefix": ["# @","###","http","request","region","crud"],
+    "description": "Create HTTP requests for a typical CRUD test operation sequence.",
     "body": [
       "# @import ../../common.http",
       "",
@@ -263,152 +271,153 @@
       "?? status == 204"
     ]
   },
-  "Simple STATUS assetion": {
+  "Request name": {
     "scope": "http,rest",
-    "prefix": ["??"],
-    "description": "Validates HTTP response status.",
-    "body": [
-      "?? status ${1|==,!=,>,>=,<,<=,startsWith,endWith|} ${2|200,201,204,400,401,404,409,20,2,40,4|}"
-    ]
-  },
-  "Simple BODY assetion": {
-    "scope": "http,rest",
-    "prefix": ["??"],
-    "description": "Validates a simple property of the HTTP response body against a simple condition.",
-    "body": [
-      "?? body ${1:testResponsePropertyName} ${2|exists,isTrue,isFalse,isBoolean,isString,isNumber,sArray,matches ^regex$,== value,!= value,> value,>= value,< value,<= value,startsWith value,endWith value,includes value,contains value|}"
-    ]
-  },
-  "Simple HEADER assetion": {
-    "scope": "http,rest",
-    "prefix": ["??"],
-    "description": "Validates an HTTP response header against a simple condition.",
-    "body": [
-      "?? header ${1:responseHeaderName} ${2|exists,isTrue,isFalse,isBoolean,isString,isNumber,sArray,matches ^regex$,== value,!= value,> value,>= value,< value,<= value,startsWith value,endWith value,includes value,contains value|}"
-    ]
-  },
-  "JavaScript RESPONSE assetion": {
-    "scope": "http,rest",
-    "prefix": ["??"],
-    "description": "Validates an HTTP response property against a simple or complex condition using JavaScript.",
-    "body": [
-      "?? js response.${1:parsedBody}.${2:pathToTheProperty} ${3|exists,isTrue,isFalse,isBoolean,isString,isNumber,sArray,matches ^regex$,== value,!= value,> value,>= value,< value,<= value,startsWith value,endWith value,includes value,contains value|}"
-    ]
-  },
-  "JavaScript BODY assetion": {
-    "scope": "http,rest",
-    "prefix": ["??"],
-    "description": "Validates a complex property of the HTTP response against a simple or complex condition using JavaScript.",
-    "body": [
-      "?? js ${1:responseBodyVariableName.propertyName} ${2|exists,isTrue,isFalse,isBoolean,isString,isNumber,sArray,matches ^regex$,== value,!= value,> value,>= value,< value,<= value,startsWith value,endWith value,includes value,contains value|}"
-    ]
-  },
-  "Import file": {
-    "scope": "http,rest",
-    "prefix": ["# @"],
-    "description": "Adds a file import statement.",
-    "body": [
-      "# @import ${1:relativePath}.http"
-    ]
-  },
-  "Add name": {
-    "scope": "http,rest",
-    "prefix": ["# @"],
-    "description": "Adds test region name (can be used for response variable, too).",
+    "prefix": ["# @","name","id"],
+    "description": "Add the request name/ID (can be used for response variable, too).",
     "body": [
       "# @name ${1:testOrResponseVariableName}"
     ]
   },
-  "Add title": {
+  "Request title": {
     "scope": "http,rest",
-    "prefix": ["# @"],
-    "description": "Adds a title to the test region (title is used in CLI output and outline view).",
+    "prefix": ["# @","title"],
+    "description": "Add the request title (title is used in CLI output and outline view).",
     "body": [
       "# @title ${1:title}"
     ]
   },
-  "Add soft reference": {
+  "Request description (short)": {
     "scope": "http,rest",
-    "prefix": ["# @"],
-    "description": "Adds a reference to another test or response variable (referenced test will execute once until environment is reset).",
+    "prefix": ["# @","request","region","description"],
+    "description": "Add a short request description.",
+    "body": [
+      "# @description ${1:description}"
+    ]
+  },
+  "Request description (long)": {
+    "scope": "http,rest",
+    "prefix": ["# @","description"],
+    "description": "Add a long request description.",
+    "body": [
+      "/*",
+      "${1:description}",
+      "*/"
+    ]
+  },
+  "Request reference (once)": {
+    "scope": "http,rest",
+    "prefix": ["# @","reference","dependency"],
+    "description": "Add a reference to another request (referenced request will execute once until environment is reset).",
     "body": [
       "# @ref ${1:referencedTestOrResponseVariableName}"
     ]
   },
-  "Add hard reference": {
+  "Request reference (always)": {
     "scope": "http,rest",
-    "prefix": ["# @"],
-    "description": "Adds a reference to another test or response variable (referenced test will execute for every reference).",
+    "prefix": ["# @","reference","dependency"],
+    "description": "Add a reference to another request (referenced request will execute always).",
     "body": [
       "# @forceRef ${1:referencedTestOrResponseVariableName}"
     ]
   },
-  "Add loop for item of array": {
+  "Loop for item of array": {
     "scope": "http,rest",
-    "prefix": ["# @"],
-    "description": "Loops through items in the array of data.",
+    "prefix": ["# @","loop","for","iterate"],
+    "description": "Repeat the request for each item of the array.",
     "body": [
       "# @loop for ${1:item} of ${2:array}"
     ]
   },
-  "Add loop for index from 0 to max": {
+  "Loop for index from 0 to max": {
     "scope": "http,rest",
-    "prefix": ["# @"],
-    "description": "Creates a variable named '$index' holding an integer value of the loop iteration from 0 to the max number specified.",
+    "prefix": ["# @","loop","for","iterate"],
+    "description": "Repeat the request N times (the variable '$index' will hold the current iteration from 0 to max-1 with an increment of 1).",
     "body": [
-      "# @loop for ${1:number}"
+      "# @loop for ${1:N}"
     ]
   },
-  "Add loop while": {
+  "Loop while": {
     "scope": "http,rest",
-    "prefix": ["# @"],
-    "description": "Executes test until the while condition is not longer met.",
+    "prefix": ["# @","loop","while","iterate"],
+    "description": "Repeat the request while the specified condition is met.",
     "body": [
       "# @while ${1:condition}"
     ]
   },
-  "Add sleep time": {
+  "Sleep time": {
     "scope": "http,rest",
-    "prefix": ["# @"],
-    "description": "Adds sleep time (in milliseconds) before the request.",
+    "prefix": ["# @","sleep","wait","pause"],
+    "description": "Add sleep time (in milliseconds) before the request.",
     "body": [
       "# @sleep ${1:sleepTimeInMilliseconds}"
     ]
   },
   "Disable certificate validation": {
     "scope": "http,rest",
-    "prefix": ["# @"],
-    "description": "Turns off certificate validation to allow https connections for self-signed (and other not properly signed) certificate in non-production environments.",
+    "prefix": ["# @","certificate","ssl","reject","allow","https"],
+    "description": "Turn off certificate validation to allow secure (HTTPS) connections to hosts using self-signed (and other not properly signed) certificates.",
     "body": [
       "# @no-reject-unauthorized"
     ]
   },
-  "Disable request": {
+  "Response status assetion": {
     "scope": "http,rest",
-    "prefix": ["# @"],
-    "description": "Statically disable request.",
+    "prefix": ["??","assert"],
+    "description": "Validate the HTTP response status code.",
     "body": [
-      "# @disabled"
+      "?? status ${1|==,!=,>,>=,<,<=,startsWith,endWith|} ${2|200,201,204,400,401,404,409,20,2,40,4|}"
     ]
   },
-  "Set OAuth 2.0 variable (from environment variables)": {
+  "Response body assetion": {
     "scope": "http,rest",
-    "prefix": ["@"],
-    "description": "Adds common variables for the OAuth 2.0 (or OpenID) authorization using environment variables.",
+    "prefix": ["??","assert"],
+    "description": "Validate a simple property of the HTTP response body against a simple condition.",
     "body": [
-      "@${1:prefix}_clientId={{${2:clientId}}}",
-      "@$1_clientSecret={{${3:clientSecret}}}",
-      "${4:@$1_scope={{${5:scope}\\}\\}}",
-      "${6:@$1_audience={{${7:audience}\\}\\}}",
-      "@$1_tokenEndpoint={{${8:tokenUrl}}}",
-      "${9:@$1_authorizationEndpoint={{${10:authorizationUrl}\\}\\}}",
-      "${11:@$1_useAuthorizationHeader=${13|true,false|}}"
+      "?? body ${1:testResponsePropertyName} ${2|exists,isTrue,isFalse,isBoolean,isString,isNumber,sArray,matches ^regex$,== value,!= value,> value,>= value,< value,<= value,startsWith value,endWith value,includes value,contains value|}"
     ]
   },
-  "Set OAuth 2.0 variable (hard-coded)": {
+  "Response header assetion": {
     "scope": "http,rest",
-    "prefix": ["@"],
-    "description": "Adds common variables for the OAuth 2.0 (or OpenID) authorization using hard coded values.",
+    "prefix": ["??","assert"],
+    "description": "Validate an HTTP response header against a simple condition.",
+    "body": [
+      "?? header ${1:responseHeaderName} ${2|exists,isTrue,isFalse,isBoolean,isString,isNumber,sArray,matches ^regex$,== value,!= value,> value,>= value,< value,<= value,startsWith value,endWith value,includes value,contains value|}"
+    ]
+  },
+  "JS response assetion": {
+    "scope": "http,rest",
+    "prefix": ["??","assert","js"],
+    "description": "Validate an HTTP response property against a simple or complex condition using JavaScript.",
+    "body": [
+      "?? js response.${1:parsedBody}.${2:pathToTheProperty} ${3|exists,isTrue,isFalse,isBoolean,isString,isNumber,sArray,matches ^regex$,== value,!= value,> value,>= value,< value,<= value,startsWith value,endWith value,includes value,contains value|}"
+    ]
+  },
+  "JS response body assetion": {
+    "scope": "http,rest",
+    "prefix": ["??","assert"],
+    "description": "Validate a complex property of the HTTP response against a simple or complex condition using JavaScript.",
+    "body": [
+      "?? js ${1:responseBodyVariableName.propertyName} ${2|exists,isTrue,isFalse,isBoolean,isString,isNumber,sArray,matches ^regex$,== value,!= value,> value,>= value,< value,<= value,startsWith value,endWith value,includes value,contains value|}"
+    ]
+  },
+  "Post-request test function asserion": {
+    "scope": "http,rest",
+    "prefix": ["test","assert"],
+    "description": "Validate response using the 'test' function in a post-request script.",
+    "body": [
+      "{{",
+      "  test('${1:testAssertionMessage}', () => {",
+      "    response.statusCode == 200;",
+      "    response.${2:additionalAssertion};",
+      "  });",
+      "\\}\\}"
+    ]
+  },
+  "OAuth variables (hard-coded)": {
+    "scope": "http,rest",
+    "prefix": ["@","variables","oauth","openid","authorization"],
+    "description": "Define common variables for the OAuth 2.0 (or OpenID) authorization using hard coded values.",
     "body": [
       "@${1:prefix}_clientId=${2:clientId}",
       "@$1_clientSecret=${3:clientSecret}",
@@ -419,20 +428,102 @@
       "${11:@$1_useAuthorizationHeader=${13|true,false|}}"
     ]
   },
-  "Add authorization header": {
+  "OAuth variables (environment)": {
     "scope": "http,rest",
-    "prefix": ["Authorization"],
-    "description": "Adds an authorization header for the request.",
+    "prefix": ["@","variables","oauth","openid","authorization"],
+    "description": "Define common variables for the OAuth 2.0 (or OpenID) authorization using environment settings.",
     "body": [
-      "Authorization: ${1|oauth2,Bearer,openid,Basic|} ${2|client_credentials,authorization_code,{{bearerToken}},{{user}},implicit,password,device_code|} ${3|clientCredentials,credentialsVariablePrefix,{{password}}|}",
+      "@${1:prefix}_clientId={{${2:clientId}}}",
+      "@$1_clientSecret={{${3:clientSecret}}}",
+      "${4:@$1_scope={{${5:scope}\\}\\}}",
+      "${6:@$1_audience={{${7:audience}\\}\\}}",
+      "@$1_tokenEndpoint={{${8:tokenUrl}}}",
+      "${9:@$1_authorizationEndpoint={{${10:authorizationUrl}\\}\\}}",
+      "${11:@$1_useAuthorizationHeader=${13|true,false|}}"
     ]
   },
-  "Add content type header": {
+  "Authorization header (oauth2/openid)": {
     "scope": "http,rest",
-    "prefix": ["Content-type"],
-    "description": "Adds common content type describing request input data.",
+    "prefix": ["header","authorization","oauth","openid"],
+    "description": "Add an OAuth 2.0/OpenID authorization header to the request.",
     "body": [
-      "Content-Type: ${1|application/json,application/merge-patch+json,application/json-patch+json|}"
+      "Authorization: ${1|oauth2,openid|} ${2|client_credentials,authorization_code,implicit,password,device_code|} ${3|variablePrefix,clientCreds,authCode|}",
+    ]
+  },
+  "Authorization header (Bearer)": {
+    "scope": "http,rest",
+    "prefix": ["header","authorization","bearer","token"],
+    "description": "Add the Bearer authorization header to the request.",
+    "body": [
+      "Authorization: Bearer {{${1:bearer_token_variable}\\}\\}",
+    ]
+  },
+  "Authorization header (Basic)": {
+    "scope": "http,rest",
+    "prefix": ["header","authorization","basic","password"],
+    "description": "Add the Basic authorization header to the request.",
+    "body": [
+      "Authorization: Basic {{${1:user_variable}\\}\\}:{{${2:password_variable}\\}\\}",
+    ]
+  },
+  "Content type header": {
+    "scope": "http,rest",
+    "prefix": ["header","content-type"],
+    "description": "Add content type header describing request input data.",
+    "body": [
+      "Content-Type: ${1|application/json,application/merge-patch+json,application/json-patch+json,application/x-www-form-urlencoded|}"
+    ]
+  },
+  "Default headers sample": {
+    "scope": "http,rest",
+    "prefix": ["header","default"],
+    "description": "Add default header section.",
+    "body": [
+      "// This section goes at the top of the file:",
+      "{{+",
+      "  const token = \"encryptedtokenvalue\";",
+      "  const correlationId = \"correlationidvalue\";",
+      "",
+      "  exports.defaultHeaders = {",
+      "    'X-Correlation-Id': `${correlationId\\}`,",
+      "    'Authorization': `Bearer ${token\\}`",
+      "  };",
+      "\\}\\}",
+      "",
+      "// Reference default headers after requests, e.g.:",
+      "GET https://httpbin.org/anything?a=b",
+      "...defaultHeaders",
+      "",
+      "POST https://httpbin.org/anything",
+      "{",
+      "  \"a\": \"b\"",
+      "\\}",
+      "...defaultHeaders",
+    ]
+  },
+
+
+
+
+
+
+
+
+
+  "Cancel request": {
+    "scope": "http,rest",
+    "prefix": ["$cancel","disable"],
+    "description": "Set the '$cancel' variable to cancel the request if the specified condition is met.",
+    "body": [
+      "exports.\\$cancel = ${1:condition};"
+    ]
+  },
+  "Disable request": {
+    "scope": "http,rest",
+    "prefix": ["# @","disable","cancel"],
+    "description": "Disable the request.",
+    "body": [
+      "# @disabled"
     ]
   }
 }

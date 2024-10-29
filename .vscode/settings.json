@@ -35,6 +35,8 @@
     "client": "curl"
   },
   "httpyac.logOutputChannelOptions": {
+    "onlyFailed": false,
+    "timings": true,
     "useShort": false,
     "responseBodyPrettyPrint": true,
     "requestOutput": true,

@@ -1,10 +1,11 @@
 @host=https://httpbin.org
 
 {{+
-  const token = "test";
+  const token = "encryptedtokenvalue";
+  const correlationId = "correlationidvalue";
 
   exports.defaultHeaders = {
-    'Content-Type': 'text/html',
+    'X-Correlation-Id': `${correlationId}`,
     'Authorization': `Bearer ${token}`
   };
 }}
