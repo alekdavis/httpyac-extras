@@ -501,15 +501,6 @@
       "...defaultHeaders",
     ]
   },
-
-
-
-
-
-
-
-
-
   "Cancel request": {
     "scope": "http,rest",
     "prefix": ["$cancel","disable"],
