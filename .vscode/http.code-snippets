@@ -34,7 +34,7 @@
     "description": "Create a test region for an HTTP GET request returning a single item.",
     "body": [
       "### ${1:Get ${2:sample}}",
-      "# @name ${3:$2Json}",
+      "# @name ${3:$2GetResult}",
       "${4:# @ref ${5:referencedTest}}",
       "GET /${6:endpoint}/{{${7:id}}}",
       "Authorization: oauth2 client_credentials clientCredentials",
@@ -51,7 +51,7 @@
     "description": "Create a test region for an HTTP GET request returning a list.",
     "body": [
       "### ${1:Get ${2:samples}}",
-      "# @name ${3:$2Json}",
+      "# @name ${3:$2GetListResult}",
       "${4:# @ref ${5:referencedTest}}",
       "GET /${6:endpoint}",
       "${7:\t?query=a\n\t&b=c}",
@@ -69,7 +69,7 @@
     "description": "Create test region for an HTTP POST request.",
     "body": [
       "### ${1:Create ${2:sample}}",
-      "# @name ${3:$2Json}",
+      "# @name ${3:$2PostResult}",
       "${4:# @ref ${5:referencedTest}}",
       "POST /${6:endpoint}",
       "Authorization: oauth2 client_credentials clientCredentials",
@@ -92,7 +92,7 @@
     "description": "Create test region for an HTTP PUT request.",
     "body": [
       "### ${1:Replace ${2:sample}}}",
-      "# @name ${3:$2Json}",
+      "# @name ${3:$2PutResult}",
       "${4:# @ref ${5:referencedTest}}",
       "PUT /${6:endpoint}/{{${7:id}}}",
       "Authorization: oauth2 client_credentials clientCredentials",
@@ -112,7 +112,7 @@
     "description": "Create a test region for an RFC 7396-compliant REST PATCH request with a body holding a single item and application/merge-patch+json content type.",
     "body": [
       "### ${1:Update ${2:sample}}",
-      "# @name ${3:$2Json}",
+      "# @name ${3:$2PatchResult}",
       "${4:# @ref ${5:referencedTest}}",
       "PATCH /${6:endpoint}/{{${7:id}}}",
       "Authorization: oauth2 client_credentials clientCredentials",
@@ -133,7 +133,7 @@
     "description": "Create a test region for an RFC 6902-compliant REST PATCH request with a body holding an array of patch operations and application/json-patch+json content type.",
     "body": [
       "### ${1:Update ${2:sample}}",
-      "# @name ${3:$2Json}",
+      "# @name ${3:$2PatchResult}",
       "${4:# @ref ${5:referencedTest}}",
       "PATCH /${6:endpoint}/{{${7:id}}}",
       "Authorization: oauth2 client_credentials clientCredentials",
@@ -155,7 +155,7 @@
     "description": "Create a test region for an HTTP DELETE request.",
     "body": [
       "### ${1:Delete ${2:sample}}}",
-      "# @name ${2:sampleTest}",
+      "# @name ${2:DeleteResult}",
       "# @ref ${3:referencedTest}",
       "DELETE /${4:endpoint}/{{${5:id}}}",
       "Authorization: oauth2 client_credentials clientCredentials",
