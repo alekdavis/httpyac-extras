@@ -9,5 +9,5 @@ Yes, but you need to install the [Chai.js library](https://www.chaijs.com/) manu
 Use backticks, e.g.:
 
 ```javascript
-@value=````
+@value=``
 ```
