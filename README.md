@@ -33,12 +33,10 @@ The important modifications to the `.gitignore` file include:
 
 ### [`httpyac.config.js` file](.httpyac.config.js)
 
-The `.httpyac.config.js` file holds the basic settings for all requests, logging, and general application behaviors including, but not limited to:
+The `httpyac.config.js` file holds the basic settings for all requests, logging, and general application behaviors including, but not limited to:
 
-- Sets the default `debug` log level to (via the `log` setting).
-- Specifies the domains for the proxy bypass (via the `proxyExcludeList` setting).
-- Turns off SSL/TLS certificate validation to allow calls to endpoints that use self-signed certificates (via the `rejectUnauthorized` setting).
-- Resets environment to clear all variables before each test run (via the `testRunResetEnvBeforeRun` setting).
+- Sets the default log level to `info`.
+- Specifies the domains for the proxy bypass.
 
 ### [`.vscode` folder](.vscode)
 
