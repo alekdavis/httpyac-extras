@@ -31,7 +31,7 @@ The important modifications to the `.gitignore` file include:
 *.private.env.json
 ```
 
-### [`.httpyac.config.js` file](.httpyac.config.js)
+### [`httpyac.config.js` file](.httpyac.config.js)
 
 The `.httpyac.config.js` file holds the basic settings for all requests, logging, and general application behaviors including, but not limited to:
 
