@@ -36,7 +36,7 @@
   },
   "httpyac.logOutputChannelOptions": {
     "onlyFailed": false,
-    "timings": true,
+    "timings": false,
     "useShort": false,
     "responseBodyPrettyPrint": true,
     "requestOutput": true,
@@ -62,5 +62,13 @@
   "cSpell.words": [
     "httpyac"
   ],
-  "httpyac.logResetOutputchannel": true
+  "httpyac.logResetOutputchannel": true,
+  "httpyac.responseViewPreferredFilename": "metaData",
+  "httpyac.testExplorerSupport": [
+    "http"
+  ],
+  "httpyac.testItemExtensions": [
+    "http"
+  ],
+  "httpyac.responseViewPreserveFocus": false
 }

@@ -1,4 +1,4 @@
-# @import common.http
+# @import ./common.rest
 
 @getFilter=FILTER
 @propertyA=PropertyA

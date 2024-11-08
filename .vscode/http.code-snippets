@@ -169,7 +169,7 @@
     "prefix": ["# @","###","http","request","region","crud"],
     "description": "Create HTTP requests for a typical CRUD test operation sequence.",
     "body": [
-      "# @import ../../common.http",
+      "# @import ../../common.rest",
       "",
       "@getFilter=FILTER",
       "@propertyA=PropertyA",
