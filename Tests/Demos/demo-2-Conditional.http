@@ -23,7 +23,6 @@ POST /anything
 }}
 POST /anything
 
-
 ### Test 4 (not skipped)
 # Skip if test 1 response status code is not 200.
 # @name test4
@@ -33,12 +32,20 @@ POST /anything
 }}
 POST /anything
 
-
 ### Test 5 (skipped)
 # Skip if test 1 response status code is 200.
 # @name test5
 # @ref test1
 {{
   exports.$cancel = (test1Response.statusCode == 200);
+}}
+POST /anything
+
+### Test 6 (skipped, indirect dependency)
+# Skip if test 3 did not run or if its response status code is 200.
+# @name test5
+# @ref test3
+{{
+  exports.$cancel = (typeof test3Response === 'undefined' || test3Response.statusCode == 200);
 }}
 POST /anything
