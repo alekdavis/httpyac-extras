@@ -21,10 +21,10 @@
   "httpyac.environmentUseSameForAllFiles": true,
   "httpyac.useDecorationProvider": true,
   "httpyac.useMethodInSendCodeLens": true,
-  "httpyac.responseStorage": "workspace",
+  "httpyac.responseStorage": "global",
   "httpyac.responseViewColumn": "beside",
   "httpyac.environmentShowStatusBarItem": true,
-  "httpyac.responseViewMode": "reuse",
+  "httpyac.responseViewMode": "open",
   "httpyac.decorationInactiveRegion": {
     "border": "dotted rgba(127, 127, 127, 80%)",
     "borderWidth": "0 0 2px 0",
@@ -70,5 +70,5 @@
   "httpyac.testItemExtensions": [
     "http"
   ],
-  "httpyac.responseViewPreserveFocus": false
+  "httpyac.responseViewPreserveFocus": true
 }

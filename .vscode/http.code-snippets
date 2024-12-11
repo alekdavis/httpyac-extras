@@ -516,5 +516,21 @@
     "body": [
       "# @disabled"
     ]
+  },
+  "Check udnefined": {
+    "scope": "http,rest,javascript,typescript,js,ts",
+    "prefix": ["typeof","undefinded"],
+    "description": "Check if a variable is undefined to prevent runtime exception.",
+    "body": [
+      "typeof ${1:variable} == 'undefined'$0"
+    ]
+  },
+  "Cancel request if dependency failed": {
+    "scope": "http,rest,javascript,typescript,js,ts",
+    "prefix": ["exports","cancel"],
+    "description": "Cancel the request if a referenced request failed or did not get called.",
+    "body": [
+      "exports.\\$cancel = (typeof ${1:referencedRequest}Response == 'undefined' || $1Response?.statusCode !== ${2|200,201,204|})${0}"
+    ]
   }
 }
