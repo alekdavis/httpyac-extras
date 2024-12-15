@@ -1,0 +1,7 @@
+// These must obviously not be hard coded.
+@user=some_user
+@password=some_password
+
+### Authorization using Basic authentication (disabled)
+GET https://httpbin.org/anything
+Authorization: Basic {{user}}:{{password}}

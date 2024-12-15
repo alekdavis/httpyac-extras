@@ -1,0 +1,6 @@
+// Token must come from a token endpoint call
+@accessToken=bearerTokenValueBase64Encoded
+
+### Authorization using Basic authentication (disabled)
+GET https://httpbin.org/anything
+Authorization: Bearer {{accessToken}}

@@ -425,7 +425,8 @@
       "${6:@$1_audience=${7:audience}}",
       "@$1_tokenEndpoint=https://${8:tokenUrl}",
       "${9:@$1_authorizationEndpoint=https://${10:authorizationUrl}}",
-      "${11:@$1_useAuthorizationHeader=${13|true,false|}}"
+      "${11:@$1_useAuthorizationHeader=${13|true,false|}}",
+      "${0}"
     ]
   },
   "OAuth variables (environment)": {
@@ -439,7 +440,22 @@
       "${6:@$1_audience={{${7:audience}\\}\\}}",
       "@$1_tokenEndpoint={{${8:tokenUrl}}}",
       "${9:@$1_authorizationEndpoint={{${10:authorizationUrl}\\}\\}}",
-      "${11:@$1_useAuthorizationHeader=${13|true,false|}}"
+      "${11:@$1_useAuthorizationHeader=${13|true,false|}}",
+      "${0}"
+    ]
+  },
+  "OAuth variables (no tab stops)": {
+    "scope": "http,rest",
+    "prefix": ["@","variables","oauth","openid","authorization"],
+    "description": "Define common variables for the OAuth 2.0 (or OpenID) authorization without tab stops.",
+    "body": [
+      "@${1:prefix}_clientId=${0}",
+      "@$1_clientSecret=",
+      "@$1_scope=",
+      "@$1_audience=",
+      "@$1_tokenEndpoint=https://",
+      "@$1_authorizationEndpoint=https://",
+      "@$1_useAuthorizationHeader=true"
     ]
   },
   "Authorization header (oauth2/openid)": {
@@ -515,6 +531,26 @@
     "description": "Disable the request.",
     "body": [
       "# @disabled"
+    ]
+  },
+  "Request body (form)": {
+    "scope": "http,rest",
+    "prefix": ["body", "form"],
+    "description": "Define request form body.",
+    "body": [
+      "name1=value1&name2=value2"
+    ]
+  },
+  "Request body (JSON)": {
+    "scope": "http,rest",
+    "prefix": ["body", "json"],
+    "description": "Define request body in JSON.",
+    "body": [
+      "{",
+      "  \"a\": \"x\",",
+      "  \"b\": 100,",
+      "  \"c\": false",
+      "}"
     ]
   },
   "Check udnefined": {
