@@ -518,8 +518,8 @@
     ]
   },
   "Cancel request": {
-    "scope": "http,rest",
-    "prefix": ["$cancel","disable"],
+    "scope": "http,rest,javascript",
+    "prefix": ["$cancel","cancel","disable"],
     "description": "Set the '$cancel' variable to cancel the request if the specified condition is met.",
     "body": [
       "exports.\\$cancel = ${1:condition};"
@@ -553,20 +553,20 @@
       "}"
     ]
   },
-  "Check udnefined": {
+  "Check if undefined": {
     "scope": "http,rest,javascript,typescript,js,ts",
-    "prefix": ["typeof","undefinded"],
+    "prefix": ["typeof","undefinded","ref"],
     "description": "Check if a variable is undefined to prevent runtime exception.",
     "body": [
-      "typeof ${1:variable} == 'undefined'$0"
+      "typeof ${1:variable} === 'undefined'$0"
     ]
   },
   "Cancel request if dependency failed": {
     "scope": "http,rest,javascript,typescript,js,ts",
-    "prefix": ["exports","cancel"],
+    "prefix": ["typeof","undefined","ref"],
     "description": "Cancel the request if a referenced request failed or did not get called.",
     "body": [
-      "exports.\\$cancel = (typeof ${1:referencedRequest}Response == 'undefined' || $1Response?.statusCode !== ${2|200,201,204|})${0}"
+      "exports.\\$cancel = (typeof ${1:referencedRequest}Response === 'undefined' || $1Response?.statusCode !== ${2|200,201,204|})${0}"
     ]
   }
 }
