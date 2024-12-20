@@ -14,8 +14,21 @@ This should add the required dependenies to the project (package*.json files and
 GET /anything?value={{value}}
 {{
   const { expect } = require('chai');
+
   test('status code 200 via EXPECT', () => {
     expect(response.statusCode).to.equal(200);
+  });
+}}
+
+### Demo chai.js EXPECT (chai-string)
+GET /anything?value={{value}}
+{{
+  const { expect } = require('chai');
+
+  chai.use(require('chai-string'));
+
+  test(`args.value starts with ${value} via EXPECT`, () => {
+    expect(response.parsedBody.args.value).to.startsWith(value);
   });
 }}
 
@@ -23,8 +36,21 @@ GET /anything?value={{value}}
 GET /anything?value={{value}}
 {{
   const { assert } = require('chai');
+
   test('status code 200 via ASSERT', () => {
     assert.equal(response.statusCode, 200);
+  });
+}}
+
+### Demo chai.js ASSERT (chai-string)
+GET /anything?value={{value}}
+{{
+  const { assert } = require('chai');
+  var chai = require('chai');
+  chai.use(require('chai-string'));
+
+  test(`args.value starts with ${value} via ASSERT`, () => {
+    assert.startsWith(response.parsedBody.args.value, value);
   });
 }}
 
@@ -32,7 +58,20 @@ GET /anything?value={{value}}
 GET /anything?value={{value}}
 {{
   require('chai').should();
+  
   test('status code 200 via SHOULD', () => {
     response.statusCode.should.be.equal(200);
+  });
+}}
+
+### Demo chai.js SHOULD (chai-string)
+GET /anything?value={{value}}
+{{
+  require('chai').should();
+  var chai = require('chai');
+  chai.use(require('chai-string'));
+
+  test(`args.value starts with ${value} via SHOULD`, () => {
+    response.parsedBody.args.value.should.startWith(value);
   });
 }}
