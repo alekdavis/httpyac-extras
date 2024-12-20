@@ -24,7 +24,7 @@ GET /anything?value={{value}}
 GET /anything?value={{value}}
 {{
   const { expect } = require('chai');
-
+  const chai = require('chai');
   chai.use(require('chai-string'));
 
   test(`args.value starts with ${value} via EXPECT`, () => {
@@ -46,7 +46,7 @@ GET /anything?value={{value}}
 GET /anything?value={{value}}
 {{
   const { assert } = require('chai');
-  var chai = require('chai');
+  const chai = require('chai');
   chai.use(require('chai-string'));
 
   test(`args.value starts with ${value} via ASSERT`, () => {
@@ -58,7 +58,7 @@ GET /anything?value={{value}}
 GET /anything?value={{value}}
 {{
   require('chai').should();
-  
+
   test('status code 200 via SHOULD', () => {
     response.statusCode.should.be.equal(200);
   });
@@ -68,7 +68,7 @@ GET /anything?value={{value}}
 GET /anything?value={{value}}
 {{
   require('chai').should();
-  var chai = require('chai');
+  const chai = require('chai');
   chai.use(require('chai-string'));
 
   test(`args.value starts with ${value} via SHOULD`, () => {
