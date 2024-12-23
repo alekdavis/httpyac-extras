@@ -429,7 +429,7 @@
       "${0}"
     ]
   },
-  "OAuth variables (environment)": {
+  "OAuth variables (from environment)": {
     "scope": "http,rest",
     "prefix": ["@","variables","oauth","openid","authorization"],
     "description": "Define common variables for the OAuth 2.0 (or OpenID) authorization using environment settings.",
@@ -517,20 +517,36 @@
       "...defaultHeaders",
     ]
   },
-  "Cancel request": {
-    "scope": "http,rest,javascript",
-    "prefix": ["$cancel","cancel","disable"],
+  "Disable request": {
+    "scope": "http,rest",
+    "prefix": ["# @","disable"],
+    "description": "Disable the request.",
+    "body": [
+      "# @disabled"
+    ]
+  },
+  "Cancel request (for condition)": {
+    "scope": "http,rest,javascript,typescript,js,ts",
+    "prefix": ["$cancel","cancel","skip"],
     "description": "Set the '$cancel' variable to cancel the request if the specified condition is met.",
     "body": [
       "exports.\\$cancel = ${1:condition};"
     ]
   },
-  "Disable request": {
-    "scope": "http,rest",
-    "prefix": ["# @","disable","cancel"],
-    "description": "Disable the request.",
+  "Cancel request (if dependency failed)": {
+    "scope": "http,rest,javascript,typescript,js,ts",
+    "prefix": ["$cancel","cancel","skip","typeof","undefined","ref"],
+    "description": "Cancel the request if a referenced request failed or did not get called.",
     "body": [
-      "# @disabled"
+      "exports.\\$cancel = (typeof ${1:referencedRequest}Response === 'undefined' || $1Response?.statusCode !== ${2|200,201,204|})${0}"
+    ]
+  },
+  "Check undefined": {
+    "scope": "http,rest,javascript,typescript,js,ts",
+    "prefix": ["typeof","undefinded","ref"],
+    "description": "Check if a variable is undefined to prevent runtime exception.",
+    "body": [
+      "typeof ${1:variable} === 'undefined'$0"
     ]
   },
   "Request body (form)": {
@@ -551,22 +567,6 @@
       "  \"b\": 100,",
       "  \"c\": false",
       "}"
-    ]
-  },
-  "Check if undefined": {
-    "scope": "http,rest,javascript,typescript,js,ts",
-    "prefix": ["typeof","undefinded","ref"],
-    "description": "Check if a variable is undefined to prevent runtime exception.",
-    "body": [
-      "typeof ${1:variable} === 'undefined'$0"
-    ]
-  },
-  "Cancel request if dependency failed": {
-    "scope": "http,rest,javascript,typescript,js,ts",
-    "prefix": ["typeof","undefined","ref"],
-    "description": "Cancel the request if a referenced request failed or did not get called.",
-    "body": [
-      "exports.\\$cancel = (typeof ${1:referencedRequest}Response === 'undefined' || $1Response?.statusCode !== ${2|200,201,204|})${0}"
     ]
   }
 }
