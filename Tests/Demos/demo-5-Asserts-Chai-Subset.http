@@ -1,0 +1,91 @@
+/*
+To add support for CHAI.JS with CHAI-SUBSET, make sure to:
+
+- Use Node.JS v23.x (or higher).
+- Add the most recent v4.x (not v5!) version of CHAI.JS to the project (e.g. npm install chai@4.5.0).
+
+This should add the required dependencies to the project (package*.json files and node_modules folder).
+*/
+
+@host=https://httpbin.org
+
+### Demo chai.js EXPECT (chai-subset)
+POST /anything?
+{
+  "data": [
+    {"name1": "value1", "name2": "value2", "name3": "value3"},
+    {"name1": "value4", "name2": "value5", "name3": "value6"},
+    {"name1": "value7", "name2": "value8", "name3": "value9"}
+  ]
+}
+{{
+  const { expect } = require('chai');
+  const chai = require('chai');
+  chai.use(require('chai-subset'));
+
+  test(`json.data contains [{"name1": "value1"}, {"name1": "value7"}] via EXPECT`, () => {
+    expect(response.parsedBody.json.data).to.containSubset([{"name1": "value1"}, {"name1": "value7"}]);
+  });
+
+  test(`json.data contains [{"name1": "value1"}, {"name2": "value8"}] via EXPECT`, () => {
+    expect(response.parsedBody.json.data).to.containSubset([{"name1": "value1"}, {"name2": "value8"}]);
+  });
+
+  test(`json.data contains [{"name1": "value1", "name2": "value2"}, {"name2": "value8"}] via EXPECT`, () => {
+    expect(response.parsedBody.json.data).to.containSubset([{"name1": "value1", "name2": "value2"}, {"name2": "value8"}]);
+  });
+}}
+
+### Demo chai.js ASSERT (chai-subset)
+POST /anything?
+{
+  "data": [
+    {"name1": "value1", "name2": "value2", "name3": "value3"},
+    {"name1": "value4", "name2": "value5", "name3": "value6"},
+    {"name1": "value7", "name2": "value8", "name3": "value9"}
+  ]
+}
+{{
+  const { assert } = require('chai');
+  const chai = require('chai');
+  chai.use(require('chai-subset'));
+
+  test(`json.data contains [{"name1": "value1"}, {"name1": "value7"}] via ASSERT`, () => {
+    assert.containSubset(response.parsedBody.json.data, [{"name1": "value1"}, {"name1": "value7"}]);
+  });
+
+  test(`json.data contains [{"name1": "value1"}, {"name2": "value8"}] via ASSERT`, () => {
+    assert.containSubset(response.parsedBody.json.data, [{"name1": "value1"}, {"name2": "value8"}]);
+  });
+
+  test(`json.data contains [{"name1": "value1", "name2": "value2"}, {"name2": "value8"}] via ASSERT`, () => {
+    assert.containSubset(response.parsedBody.json.data, [{"name1": "value1", "name2": "value2"}, {"name2": "value8"}]);
+  });
+}}
+
+### Demo chai.js SHOULD (chai-subset)
+POST /anything?
+{
+  "data": [
+    {"name1": "value1", "name2": "value2", "name3": "value3"},
+    {"name1": "value4", "name2": "value5", "name3": "value6"},
+    {"name1": "value7", "name2": "value8", "name3": "value9"}
+  ]
+}
+{{
+  require('chai').should();
+  const chai = require('chai');
+  chai.use(require('chai-subset'));
+
+  test(`json.data contains [{"name1": "value1"}, {"name1": "value7"}] via SHOULD`, () => {
+    response.parsedBody.json.data.should.containSubset([{"name1": "value1"}, {"name1": "value7"}]);
+  });
+
+  test(`json.data contains [{"name1": "value1"}, {"name2": "value8"}] via SHOULD`, () => {
+    response.parsedBody.json.data.should.containSubset([{"name1": "value1"}, {"name2": "value8"}]);
+  });
+
+  test(`json.data contains [{"name1": "value1", "name2": "value2"}, {"name2": "value8"}] via SHOULD`, () => {
+    response.parsedBody.json.data.should.containSubset([{"name1": "value1", "name2": "value2"}, {"name2": "value8"}]);
+  });
+}}

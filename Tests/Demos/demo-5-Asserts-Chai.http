@@ -4,7 +4,7 @@ To add support for CHAI.JS, make sure to:
 - Use Node.JS v23.x (or higher).
 - Add the most recent v4.x (not v5!) version of CHAI.JS to the project (e.g. npm install chai@4.5.0).
 
-This should add the required dependenies to the project (package*.json files and node_modules folder).
+This should add the required dependencies to the project (package*.json files and node_modules folder).
 */
 
 @host=https://httpbin.org
@@ -20,18 +20,6 @@ GET /anything?value={{value}}
   });
 }}
 
-### Demo chai.js EXPECT (chai-string)
-GET /anything?value={{value}}
-{{
-  const { expect } = require('chai');
-  const chai = require('chai');
-  chai.use(require('chai-string'));
-
-  test(`args.value starts with ${value} via EXPECT`, () => {
-    expect(response.parsedBody.args.value).to.startsWith(value);
-  });
-}}
-
 ### Demo chai.js ASSERT
 GET /anything?value={{value}}
 {{
@@ -42,18 +30,6 @@ GET /anything?value={{value}}
   });
 }}
 
-### Demo chai.js ASSERT (chai-string)
-GET /anything?value={{value}}
-{{
-  const { assert } = require('chai');
-  const chai = require('chai');
-  chai.use(require('chai-string'));
-
-  test(`args.value starts with ${value} via ASSERT`, () => {
-    assert.startsWith(response.parsedBody.args.value, value);
-  });
-}}
-
 ### Demo chai.js SHOULD
 GET /anything?value={{value}}
 {{
@@ -61,17 +37,5 @@ GET /anything?value={{value}}
 
   test('status code 200 via SHOULD', () => {
     response.statusCode.should.be.equal(200);
-  });
-}}
-
-### Demo chai.js SHOULD (chai-string)
-GET /anything?value={{value}}
-{{
-  require('chai').should();
-  const chai = require('chai');
-  chai.use(require('chai-string'));
-
-  test(`args.value starts with ${value} via SHOULD`, () => {
-    response.parsedBody.args.value.should.startWith(value);
   });
 }}

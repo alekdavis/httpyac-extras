@@ -1,51 +1,60 @@
 @host=https://httpbin.org
 
-### Test 1
+### Test 1 (no dependencies)
 # @name test1
 POST /anything
 {"a":"x"}
 
-### Test 2 (not skipped)
+### Test 2 (depends on test 1 response body : not skipped)
 # Skip if test 1 response 'json.a' value is not 'x'.
 # @name test2
 # @ref test1
 {{
-  exports.$cancel = !(test1.json.a == "x");
+  exports.$cancel = !(test1?.json?.a == "x");
 }}
 POST /anything
 
-### Test 3 (skipped)
+### Test 3 (depends on test 1 response body: skipped)
 # Skip if test X response 'json.a' value is "x".
 # @name test3
 # @ref test1
 {{
-  exports.$cancel = (test1.json.a == "x");
+  exports.$cancel = (test1?.json?.a == "x");
 }}
 POST /anything
 
-### Test 4 (not skipped)
+### Test 4 (depends on test 1 HTTP response status: not skipped)
 # Skip if test 1 response status code is not 200.
 # @name test4
 # @ref test1
 {{
-  exports.$cancel = !(test1Response.statusCode == 200);
+  exports.$cancel = !(test1Response?.statusCode == 200);
 }}
 POST /anything
 
-### Test 5 (skipped)
+### Test 5 (depends on test 1 HTTP response status: skipped)
 # Skip if test 1 response status code is 200.
 # @name test5
 # @ref test1
 {{
-  exports.$cancel = (test1Response.statusCode == 200);
+  exports.$cancel = (test1Response?.statusCode == 200);
 }}
 POST /anything
 
-### Test 6 (skipped, indirect dependency)
+### Test 6 (depends on test 2: not skipped)
+# Skip if test 2 did not run or if its response status code is not 200.
+# @name test5
+# @ref test2
+{{
+  exports.$cancel = (test2Response?.statusCode !== 200);
+}}
+POST /anything
+
+### Test 7 (depends on test 3: skipped)
 # Skip if test 3 did not run or if its response status code is 200.
 # @name test5
 # @ref test3
 {{
-  exports.$cancel = (typeof test3Response === 'undefined' || test3Response.statusCode == 200);
+  exports.$cancel = (test3Response?.statusCode == 200);
 }}
 POST /anything
