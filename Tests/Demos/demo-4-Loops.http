@@ -6,20 +6,29 @@
   exports.data = [1, 2, 3];
 }}
 # @loop for item of data
+{{
+  httpRegion.metaData.title += (" (" + (item) + ")");
+}}
 GET https://httpbin.org/anything?item={{item}}
 
-### FOR item OF data (read from a file)
+### FOR item OF data read from a file
 # @name testForItemOfDataFromFile
 {{
   var fs = require('fs');
   exports.data = JSON.parse(fs.readFileSync(__dirname + '/demo-4-Loops-Data.json', 'utf8'));
 }}
 # @loop for item of data
+{{
+  httpRegion.metaData.title += (" (" + (item.id) + ":" + item.name + ")");
+}}
 GET https://httpbin.org/anything?id={{item.id}}&name={{item.name}}
 
 ### FOR count
 # @name testForCount
 # @loop for 4
+{{
+  httpRegion.metaData.title += (" (" + ($index + 1) + " of 4)");
+}}
 GET https://httpbin.org/anything?item={{$index}}
 
 ### WHILE condition
@@ -28,4 +37,7 @@ GET https://httpbin.org/anything?item={{$index}}
   exports.expression = { index: 0 };
 }}
 # @loop while expression.index < 3
+{{
+  httpRegion.metaData.title += (" (index=" + (expression.index) + ")");
+}}
 GET /anything?item={{expression.index++}}
