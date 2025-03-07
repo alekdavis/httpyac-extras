@@ -568,5 +568,98 @@
       "  \"c\": false",
       "}"
     ]
+  },
+  "Require chai for expect": {
+    "scope": "http,rest",
+    "prefix": ["require", "chai", "expect"],
+    "description": "Reference chai package for EXPECT assertions.",
+    "body": [
+     "const { expect } = require('chai');"
+    ]
+  },
+  "Require chai-string for expect": {
+    "scope": "http,rest",
+    "prefix": ["require", "chai-string", "expect"],
+    "description": "Reference chai-string package for EXPECT assertions.",
+    "body": [
+      "const { expect } = require('chai');",
+      "const chai = require('chai');",
+      "chai.use(require('chai-string'));"
+     ]
+  },
+  "Require chai-subset for expect": {
+    "scope": "http,rest",
+    "prefix": ["require", "chai-subset", "expect"],
+    "description": "Reference chai-string package for EXPECT assertions.",
+    "body": [
+      "const { expect } = require('chai');",
+      "const chai = require('chai');",
+      "chai.use(require('chai-subset'));"
+     ]
+  },
+  "Require chai for assert": {
+    "scope": "http,rest",
+    "prefix": ["require", "chai", "assert"],
+    "description": "Reference chai package for ASSERT assertions.",
+    "body": [
+      "const { assert } = require('chai');"
+    ]
+  },
+  "Require chai-string for assert": {
+    "scope": "http,rest",
+    "prefix": ["require", "chai-string", "assert"],
+    "description": "Reference chai-string package for ASSERT assertions.",
+    "body": [
+      "const { assert } = require('chai');",
+      "const chai = require('chai');",
+      "chai.use(require('chai-string'));"
+    ]
+  },
+  "Require chai-subset for assert": {
+    "scope": "http,rest",
+    "prefix": ["require", "chai-subset", "assert"],
+    "description": "Reference chai-subset package for ASSERT assertions.",
+    "body": [
+      "const { assert } = require('chai');",
+      "const chai = require('chai');",
+      "chai.use(require('chai-subset'));"
+    ]
+  },
+  "Require chai for should": {
+    "scope": "http,rest",
+    "prefix": ["require", "chai", "should"],
+    "description": "Reference chai package for SHOULD assertions.",
+    "body": [
+      "require('chai').should();"
+    ]
+  },
+  "Require chai-string for should": {
+    "scope": "http,rest",
+    "prefix": ["require", "chai-string", "should"],
+    "description": "Reference chai-string package for SHOULD assertions.",
+    "body": [
+      "require('chai').should();",
+      "const chai = require('chai');",
+      "chai.use(require('chai-string'));"
+        ]
+  },
+  "Require chai-subset for should": {
+    "scope": "http,rest",
+    "prefix": ["require", "chai-subset", "should"],
+    "description": "Reference chai-subset package for SHOULD assertions.",
+    "body": [
+      "require('chai').should();",
+      "const chai = require('chai');",
+      "chai.use(require('chai-subset'));"
+    ]
+  },
+  "Post-request test function (template string title)": {
+    "scope": "http,rest",
+    "prefix": ["test"],
+    "description": "Post-request test function with title holding a template string.",
+    "body": [
+      "test(`${1:Variable equals '${variable\\}'}`, () => {${0}",
+      "});"
+    ]
   }
 }
