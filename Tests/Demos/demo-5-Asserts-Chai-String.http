@@ -18,7 +18,8 @@ GET /anything?value={{value}}
   chai.use(require('chai-string'));
 
   test(`args.value starts with ${value} via EXPECT`, () => {
-    expect(response.parsedBody.args.value).to.startsWith(value);
+    expect(response.parsedBody.args.value).to.startWith(value);
+    expect(response.parsedBody.args.value).to.startWithIgnoreCase(value);
   });
 }}
 
@@ -31,6 +32,7 @@ GET /anything?value={{value}}
 
   test(`args.value starts with ${value} via ASSERT`, () => {
     assert.startsWith(response.parsedBody.args.value, value);
+    assert.startsWithIgnoreCase(response.parsedBody.args.value, value);
   });
 }}
 
@@ -43,5 +45,6 @@ GET /anything?value={{value}}
 
   test(`args.value starts with ${value} via SHOULD`, () => {
     response.parsedBody.args.value.should.startWith(value);
+    response.parsedBody.args.value.should.startWithIgnoreCase(value);
   });
 }}
