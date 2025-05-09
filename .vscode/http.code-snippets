@@ -1,15 +1,15 @@
 {
   "Import file": {
     "scope": "http,rest",
-    "prefix": ["# @","import","include","file"],
+    "prefix": ["# @import ","import","include","file"],
     "description": "Import a local file.",
     "body": [
       "# @import ${1:pathRelativeToCurrentFile}/${2:importedFileName}.http"
     ]
   },
-  "Any HTTP request": {
+  "HTTP request": {
     "scope": "http,rest",
-    "prefix": ["###","http","request","region"],
+    "prefix": ["### ","http","request","region"],
     "description": "Create a test region for any type of HTTP request.",
     "body": [
       "### ${1:Test title}",
@@ -28,9 +28,9 @@
       "${0}"
     ]
   },
-  "HTTP GET (ITEM) request": {
+  "GET (item) request": {
     "scope": "http,rest",
-    "prefix": ["###","http","request","region","get","item","single","one"],
+    "prefix": ["###","http","request","region","GET","item","single","one"],
     "description": "Create a test region for an HTTP GET request returning a single item.",
     "body": [
       "### ${1:Get ${2:sample}}",
@@ -45,9 +45,9 @@
       "${0}"
     ]
   },
-  "HTTP GET (LIST) request": {
+  "GET (list) request": {
     "scope": "http,rest",
-    "prefix": ["###","http","request","region","get","list","collection","array","many","multiple"],
+    "prefix": ["###","http","request","region","GET","list","collection","array","many","multiple"],
     "description": "Create a test region for an HTTP GET request returning a list.",
     "body": [
       "### ${1:Get ${2:samples}}",
@@ -63,9 +63,9 @@
       "${0}"
     ]
   },
-  "HTTP POST request": {
+  "POST request": {
     "scope": "http,rest",
-    "prefix": ["###","http","request","region","post","create"],
+    "prefix": ["###","http","request","region","POST","create"],
     "description": "Create test region for an HTTP POST request.",
     "body": [
       "### ${1:Create ${2:sample}}",
@@ -86,9 +86,9 @@
       "${0}"
     ]
   },
-  "HTTP PUT request": {
+  "PUT request": {
     "scope": "http,rest",
-    "prefix": ["###","http","request","region","put","replace"],
+    "prefix": ["###","http","request","region","PUT","replace"],
     "description": "Create test region for an HTTP PUT request.",
     "body": [
       "### ${1:Replace ${2:sample}}}",
@@ -106,9 +106,9 @@
       "${0}"
     ]
   },
-  "HTTP PATCH request": {
+  "PATCH request": {
     "scope": "http,rest",
-    "prefix": ["###","http","request","region","patch","update"],
+    "prefix": ["###","http","request","region","PATCH","update"],
     "description": "Create a test region for an RFC 7396-compliant REST PATCH request with a body holding a single item and application/merge-patch+json content type.",
     "body": [
       "### ${1:Update ${2:sample}}",
@@ -127,9 +127,9 @@
       "${0}"
     ]
   },
-  "HTTP PATCH request (MERGE-PATCH+JSON)": {
+  "PATCH request (merge-patch+json)": {
     "scope": "http,rest",
-    "prefix": ["###","http","request","region","patch","update"],
+    "prefix": ["###","http","request","region","PATCH","update"],
     "description": "Create a test region for an RFC 6902-compliant REST PATCH request with a body holding an array of patch operations and application/json-patch+json content type.",
     "body": [
       "### ${1:Update ${2:sample}}",
@@ -149,9 +149,9 @@
       "${0}"
     ]
   },
-  "HTTP DELETE request": {
+  "DELETE request": {
     "scope": "http,rest",
-    "prefix": ["###","http","request","region","delete"],
+    "prefix": ["###","http","request","region","DELETE"],
     "description": "Create a test region for an HTTP DELETE request.",
     "body": [
       "### ${1:Delete ${2:sample}}}",
@@ -164,7 +164,7 @@
       "${0}"
     ]
   },
-  "HTTP CRUD requests": {
+  "CRUD request sample": {
     "scope": "http,rest",
     "prefix": ["# @","###","http","request","region","crud"],
     "description": "Create HTTP requests for a typical CRUD test operation sequence.",
@@ -273,7 +273,7 @@
   },
   "Request name": {
     "scope": "http,rest",
-    "prefix": ["# @","name","id"],
+    "prefix": ["# @name ","name","id"],
     "description": "Add the request name/ID (can be used for response variable, too).",
     "body": [
       "# @name ${1:testOrResponseVariableName}"
@@ -281,7 +281,7 @@
   },
   "Request title": {
     "scope": "http,rest",
-    "prefix": ["# @","title"],
+    "prefix": ["# @title ","title"],
     "description": "Add the request title (title is used in CLI output and outline view).",
     "body": [
       "# @title ${1:title}"
@@ -289,7 +289,7 @@
   },
   "Request description (short)": {
     "scope": "http,rest",
-    "prefix": ["# @","request","region","description"],
+    "prefix": ["# @description ","request","region","description"],
     "description": "Add a short request description.",
     "body": [
       "# @description ${1:description}"
@@ -297,7 +297,7 @@
   },
   "Request description (long)": {
     "scope": "http,rest",
-    "prefix": ["# @","description"],
+    "prefix": ["# @","/* ","description"],
     "description": "Add a long request description.",
     "body": [
       "/*",
@@ -305,49 +305,61 @@
       "*/"
     ]
   },
-  "Request reference (once)": {
+  "Reference once": {
     "scope": "http,rest",
-    "prefix": ["# @","reference","dependency"],
+    "prefix": ["# @ref ","reference","dependency"],
     "description": "Add a reference to another request (referenced request will execute once until environment is reset).",
     "body": [
       "# @ref ${1:referencedTestOrResponseVariableName}"
     ]
   },
-  "Request reference (always)": {
+  "Reference always": {
     "scope": "http,rest",
-    "prefix": ["# @","reference","dependency"],
+    "prefix": ["# @forceRef ","reference","dependency"],
     "description": "Add a reference to another request (referenced request will execute always).",
     "body": [
       "# @forceRef ${1:referencedTestOrResponseVariableName}"
     ]
   },
-  "Loop for item of array": {
+  "Loop for (item in array)": {
     "scope": "http,rest",
-    "prefix": ["# @","loop","for","iterate"],
+    "prefix": ["# @loop for ","loop","for","iterate"],
     "description": "Repeat the request for each item of the array.",
     "body": [
       "# @loop for ${1:item} of ${2:array}"
     ]
   },
-  "Loop for index from 0 to max": {
+  "Loop for (index from 0 to max)": {
     "scope": "http,rest",
-    "prefix": ["# @","loop","for","iterate"],
+    "prefix": ["# @loop for ","loop","for","iterate"],
     "description": "Repeat the request N times (the variable '$index' will hold the current iteration from 0 to max-1 with an increment of 1).",
     "body": [
       "# @loop for ${1:N}"
     ]
   },
+  "Loop for (dynamic title)": {
+    "scope": "http,rest",
+    "prefix": ["# @loop for ","loop","for","iterate"],
+    "description": "Repeat the request N times (the variable '$index' will hold the current iteration from 0 to max-1 with an increment of 1).",
+    "body": [
+      "# @loop for ${1:N}",
+      "{{",
+      "  httpRegion.metaData.title += (\" (\" + (\\$index + 1) + \" of $1)\")",
+      "\\}\\}",
+      "${0}"
+    ]
+  },
   "Loop while": {
     "scope": "http,rest",
-    "prefix": ["# @","loop","while","iterate"],
+    "prefix": ["# @while ","loop","while","iterate"],
     "description": "Repeat the request while the specified condition is met.",
     "body": [
       "# @while ${1:condition}"
     ]
   },
-  "Sleep time": {
+  "Sleep": {
     "scope": "http,rest",
-    "prefix": ["# @","sleep","wait","pause"],
+    "prefix": ["# @sleep ","sleep","wait","pause"],
     "description": "Add sleep time (in milliseconds) before the request.",
     "body": [
       "# @sleep ${1:sleepTimeInMilliseconds}"
@@ -355,55 +367,55 @@
   },
   "Disable certificate validation": {
     "scope": "http,rest",
-    "prefix": ["# @","certificate","ssl","reject","allow","https"],
+    "prefix": ["# @no-","certificate","ssl","nossl","reject","allow","https"],
     "description": "Turn off certificate validation to allow secure (HTTPS) connections to hosts using self-signed (and other not properly signed) certificates.",
     "body": [
       "# @no-reject-unauthorized"
     ]
   },
-  "Response status assetion": {
+  "Status assertion": {
     "scope": "http,rest",
-    "prefix": ["??","assert"],
+    "prefix": ["?? status ","assert"],
     "description": "Validate the HTTP response status code.",
     "body": [
       "?? status ${1|==,!=,>,>=,<,<=,startsWith,endWith|} ${2|200,201,204,400,401,404,409,20,2,40,4|}"
     ]
   },
-  "Response body assetion": {
+  "Body assertion": {
     "scope": "http,rest",
-    "prefix": ["??","assert"],
+    "prefix": ["?? body ","assert"],
     "description": "Validate a simple property of the HTTP response body against a simple condition.",
     "body": [
       "?? body ${1:testResponsePropertyName} ${2|exists,isTrue,isFalse,isBoolean,isString,isNumber,sArray,matches ^regex$,== value,!= value,> value,>= value,< value,<= value,startsWith value,endWith value,includes value,contains value|}"
     ]
   },
-  "Response header assetion": {
+  "Header assertion": {
     "scope": "http,rest",
-    "prefix": ["??","assert"],
+    "prefix": ["?? header ","assert"],
     "description": "Validate an HTTP response header against a simple condition.",
     "body": [
       "?? header ${1:responseHeaderName} ${2|exists,isTrue,isFalse,isBoolean,isString,isNumber,sArray,matches ^regex$,== value,!= value,> value,>= value,< value,<= value,startsWith value,endWith value,includes value,contains value|}"
     ]
   },
-  "JS response assetion": {
+  "JS response assertion": {
     "scope": "http,rest",
-    "prefix": ["??","assert","js"],
+    "prefix": ["?? js response ","assert"],
     "description": "Validate an HTTP response property against a simple or complex condition using JavaScript.",
     "body": [
       "?? js response.${1:parsedBody}.${2:pathToTheProperty} ${3|exists,isTrue,isFalse,isBoolean,isString,isNumber,sArray,matches ^regex$,== value,!= value,> value,>= value,< value,<= value,startsWith value,endWith value,includes value,contains value|}"
     ]
   },
-  "JS response body assetion": {
+  "JS body assertion": {
     "scope": "http,rest",
-    "prefix": ["??","assert"],
+    "prefix": ["?? js ","assert"],
     "description": "Validate a complex property of the HTTP response against a simple or complex condition using JavaScript.",
     "body": [
       "?? js ${1:responseBodyVariableName.propertyName} ${2|exists,isTrue,isFalse,isBoolean,isString,isNumber,sArray,matches ^regex$,== value,!= value,> value,>= value,< value,<= value,startsWith value,endWith value,includes value,contains value|}"
     ]
   },
-  "Post-request test function asserion": {
+  "Test function": {
     "scope": "http,rest",
-    "prefix": ["test","assert"],
+    "prefix": ["{{","test(","assert"],
     "description": "Validate response using the 'test' function in a post-request script.",
     "body": [
       "{{",
@@ -412,6 +424,15 @@
       "    response.${2:additionalAssertion};",
       "  });",
       "\\}\\}"
+    ]
+  },
+  "Test function (template string title)": {
+    "scope": "http,rest",
+    "prefix": ["test("],
+    "description": "Post-request test function with title holding a template string.",
+    "body": [
+      "test(`${1:Variable equals '${variable\\}'}`, () => {${0}",
+      "});"
     ]
   },
   "OAuth variables (hard-coded)": {
@@ -476,7 +497,7 @@
   },
   "Authorization header (Basic)": {
     "scope": "http,rest",
-    "prefix": ["header","authorization","basic","password"],
+    "prefix": ["Authorization: Basic ","header","authorization","basic","password"],
     "description": "Add the Basic authorization header to the request.",
     "body": [
       "Authorization: Basic {{${1:user_variable}\\}\\}:{{${2:password_variable}\\}\\}",
@@ -484,7 +505,7 @@
   },
   "Content type header": {
     "scope": "http,rest",
-    "prefix": ["header","content-type"],
+    "prefix": ["Content-Type: ","header","content-type"],
     "description": "Add content type header describing request input data.",
     "body": [
       "Content-Type: ${1|application/json,application/merge-patch+json,application/json-patch+json,application/x-www-form-urlencoded|}"
@@ -519,7 +540,7 @@
   },
   "Disable request": {
     "scope": "http,rest",
-    "prefix": ["# @","disable"],
+    "prefix": ["# @disabled","disable"],
     "description": "Disable the request.",
     "body": [
       "# @disabled"
@@ -527,7 +548,7 @@
   },
   "Cancel request (for condition)": {
     "scope": "http,rest,javascript,typescript,js,ts",
-    "prefix": ["$cancel","cancel","skip"],
+    "prefix": ["exports.$cancel = ","$cancel","cancel","skip"],
     "description": "Set the '$cancel' variable to cancel the request if the specified condition is met.",
     "body": [
       "exports.\\$cancel = ${1:condition};"
@@ -535,7 +556,7 @@
   },
   "Cancel request (if dependency failed)": {
     "scope": "http,rest,javascript,typescript,js,ts",
-    "prefix": ["$cancel","cancel","skip","typeof","undefined","ref"],
+    "prefix": ["exports.$cancel = ","$cancel","cancel","skip","typeof","undefined","ref"],
     "description": "Cancel the request if a referenced request failed or did not get called.",
     "body": [
       "exports.\\$cancel = (typeof ${1:referencedRequest}Response === 'undefined' || $1Response?.statusCode !== ${2|200,201,204|})${0}"
@@ -543,7 +564,7 @@
   },
   "Check undefined": {
     "scope": "http,rest,javascript,typescript,js,ts",
-    "prefix": ["typeof","undefinded","ref"],
+    "prefix": ["typeof ","undefinded","ref"],
     "description": "Check if a variable is undefined to prevent runtime exception.",
     "body": [
       "typeof ${1:variable} === 'undefined'$0"
@@ -559,7 +580,7 @@
   },
   "Request body (JSON)": {
     "scope": "http,rest",
-    "prefix": ["body", "json"],
+    "prefix": ["{","body", "json"],
     "description": "Define request body in JSON.",
     "body": [
       "{",
@@ -571,7 +592,7 @@
   },
   "Require chai for expect": {
     "scope": "http,rest",
-    "prefix": ["require", "chai", "expect"],
+    "prefix": ["const ","require", "chai", "expect"],
     "description": "Reference chai package for EXPECT assertions.",
     "body": [
      "const { expect } = require('chai');"
@@ -579,7 +600,7 @@
   },
   "Require chai-string for expect": {
     "scope": "http,rest",
-    "prefix": ["require", "chai-string", "expect"],
+    "prefix": ["const ","require", "chai-string", "expect"],
     "description": "Reference chai-string package for EXPECT assertions.",
     "body": [
       "const { expect } = require('chai');",
@@ -589,7 +610,7 @@
   },
   "Require chai-subset for expect": {
     "scope": "http,rest",
-    "prefix": ["require", "chai-subset", "expect"],
+    "prefix": ["const ","require", "chai-subset", "expect"],
     "description": "Reference chai-string package for EXPECT assertions.",
     "body": [
       "const { expect } = require('chai');",
@@ -599,7 +620,7 @@
   },
   "Require chai for assert": {
     "scope": "http,rest",
-    "prefix": ["require", "chai", "assert"],
+    "prefix": ["const ","require", "chai", "assert"],
     "description": "Reference chai package for ASSERT assertions.",
     "body": [
       "const { assert } = require('chai');"
@@ -607,7 +628,7 @@
   },
   "Require chai-string for assert": {
     "scope": "http,rest",
-    "prefix": ["require", "chai-string", "assert"],
+    "prefix": ["const ","require", "chai-string", "assert"],
     "description": "Reference chai-string package for ASSERT assertions.",
     "body": [
       "const { assert } = require('chai');",
@@ -617,7 +638,7 @@
   },
   "Require chai-subset for assert": {
     "scope": "http,rest",
-    "prefix": ["require", "chai-subset", "assert"],
+    "prefix": ["const ","require", "chai-subset", "assert"],
     "description": "Reference chai-subset package for ASSERT assertions.",
     "body": [
       "const { assert } = require('chai');",
@@ -627,7 +648,7 @@
   },
   "Require chai for should": {
     "scope": "http,rest",
-    "prefix": ["require", "chai", "should"],
+    "prefix": ["require('chai').should", "chai", "should"],
     "description": "Reference chai package for SHOULD assertions.",
     "body": [
       "require('chai').should();"
@@ -635,7 +656,7 @@
   },
   "Require chai-string for should": {
     "scope": "http,rest",
-    "prefix": ["require", "chai-string", "should"],
+    "prefix": ["require('chai').should", "chai-string", "should"],
     "description": "Reference chai-string package for SHOULD assertions.",
     "body": [
       "require('chai').should();",
@@ -645,21 +666,12 @@
   },
   "Require chai-subset for should": {
     "scope": "http,rest",
-    "prefix": ["require", "chai-subset", "should"],
+    "prefix": ["require('chai').should", "chai-subset", "should"],
     "description": "Reference chai-subset package for SHOULD assertions.",
     "body": [
       "require('chai').should();",
       "const chai = require('chai');",
       "chai.use(require('chai-subset'));"
-    ]
-  },
-  "Post-request test function (template string title)": {
-    "scope": "http,rest",
-    "prefix": ["test"],
-    "description": "Post-request test function with title holding a template string.",
-    "body": [
-      "test(`${1:Variable equals '${variable\\}'}`, () => {${0}",
-      "});"
     ]
   }
 }
